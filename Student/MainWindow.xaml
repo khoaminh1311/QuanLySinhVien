@@ -1,0 +1,285 @@
+﻿<Window x:Class="InterfaceSinhVien.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfaceSinhVien"
+        mc:Ignorable="d"
+        Title="Cổng thông tin Sinh viên" Height="650" Width="1100"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip"
+        Background="#F5F7FA">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#0078D7"/>
+        <SolidColorBrush x:Key="SidebarBg" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="HoverColor" Color="#F0F4F8"/>
+        <SolidColorBrush x:Key="TextDark" Color="#334155"/>
+        <SolidColorBrush x:Key="TextLight" Color="#64748B"/>
+        <Style x:Key="TopMenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#33FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#55FFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="20,0,0,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="{StaticResource TextDark}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8" Margin="10,2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.ColumnSpan="2" VerticalAlignment="Center"/>
+                                <Border x:Name="indicator" HorizontalAlignment="Left" Width="4" Height="25" 
+                                        Background="{StaticResource PrimaryColor}" CornerRadius="2" 
+                                        Visibility="Collapsed" Margin="0,0,0,0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource HoverColor}"/>
+                                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                                <Setter TargetName="indicator" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HeaderLinkStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="15,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock Text="{TemplateBinding Content}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="TextDecorations" Value="Underline"/>
+                                            <Setter Property="Opacity" Value="0.8"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Background="White" BorderBrush="#EEEEEE" BorderThickness="0,0,1,1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
+                <Image Source="/img/581937821_1087127473411700_6449347946674549142_n.png" Width="45" Height="45">
+                    <Image.Clip>
+                        <EllipseGeometry Center="22.5,22.5" RadiusX="22.5" RadiusY="22.5"/>
+                    </Image.Clip>
+                </Image>
+                <TextBlock Text="6ANHEMSIEUNHAN" VerticalAlignment="Center" Margin="15,0,0,0" 
+                           FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryColor}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource PrimaryColor}">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <Button Click="BtnTrangChu_Click" Style="{StaticResource TopMenuButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🏠" Margin="0,0,8,0"/>
+                            <TextBlock Text="TRANG CHỦ"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Click="BtnBaiTap_Click" Style="{StaticResource TopMenuButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📝" Margin="0,0,8,0"/>
+                            <TextBlock Text="BÀI TẬP"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Click="BtnBaoCao_Click" Style="{StaticResource TopMenuButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📊" Margin="0,0,8,0"/>
+                            <TextBlock Text="BÁO CÁO"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center">
+                    <Border CornerRadius="20" Background="#33000000" Padding="5,5,15,5" Margin="0,0,15,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="30" Height="30" Fill="White" Margin="0,0,10,0"/>
+                            <TextBlock x:Name="txtTenHeader" Text="..." Foreground="White" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="Thoát" Click="Button_Thoat" 
+                            Background="#D32F2F" Foreground="White" 
+                            BorderThickness="0" Height="30" Width="80" Cursor="Hand">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border x:Name="SidebarBorder" Grid.Row="1" Grid.Column="0" Background="{StaticResource SidebarBg}" BorderBrush="#EEEEEE" BorderThickness="0,0,1,0">
+            
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="0,20,0,0">
+
+                    <Border Margin="20,0,20,20" Background="#F8FAFC" CornerRadius="10" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="Xin chào," Foreground="{StaticResource TextLight}" FontSize="12"/>
+                            <TextBlock x:Name="txtTenPanel" Text="..." Foreground="{StaticResource TextDark}" FontWeight="Bold" FontSize="16" Margin="0,5,0,0"/>
+                            <TextBlock Text="Sinh viên" Foreground="{StaticResource PrimaryColor}" FontSize="12" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Text="QUẢN LÝ" Foreground="#94A3B8" FontSize="11" FontWeight="Bold" Margin="30,10,0,5"/>
+
+                    <Button x:Name="btnThongBao" Style="{StaticResource NavButtonStyle}" Click="BtnThongTin_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="👤" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Thông tin cá nhân" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnTinTuc" Style="{StaticResource NavButtonStyle}" Click="BtnTinTuc_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="📢" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Tin tức &amp; Thông báo" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnLich" Style="{StaticResource NavButtonStyle}" Click="BtnLich_Tong_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="📅" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Lịch học &amp; Thi" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+
+                    <StackPanel x:Name="MenuLichCon" Visibility="Collapsed" Background="#F1F5F9" Margin="20,0,20,10">
+                        <Button Click="BtnLichHoc_Click" Height="40" Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Padding="40,0,0,0" Foreground="#555">
+                            <TextBlock Text="• Lịch học"/>
+                        </Button>
+                        <Button Click="BtnLichThi_Click" Height="40" Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Padding="40,0,0,0" Foreground="#555">
+                            <TextBlock Text="• Lịch thi"/>
+                        </Button>
+                    </StackPanel>
+
+                    <TextBlock Text="HỌC TẬP" Foreground="#94A3B8" FontSize="11" FontWeight="Bold" Margin="30,15,0,5"/>
+
+                    <Button x:Name="btnXemDiem" Style="{StaticResource NavButtonStyle}" Click="BtnXemDiem_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="📊" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Xem điểm" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnDangKyMon" Style="{StaticResource NavButtonStyle}" Click="BtnDangKyMon_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="📝" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Đăng ký môn học" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnHocPhi" Style="{StaticResource NavButtonStyle}" Click="BtnHocPhi_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="💳" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Học phí" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Margin="20" Background="White" CornerRadius="10">
+            <Border.Effect>
+                <DropShadowEffect Color="#E2E8F0" BlurRadius="20" ShadowDepth="5" Opacity="0.5"/>
+            </Border.Effect>
+
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="5"/>
+        </Border>
+
+    </Grid>
+</Window>

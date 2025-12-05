@@ -1,0 +1,256 @@
+﻿<Window x:Class="QuanLySinhVien.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Portal - Login"
+        Height="600" Width="1150"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI">
+
+    <!-- Nền đỏ gradient toàn màn hình -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#9B0F1A" Offset="0"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <!-- Khối center: dải trắng + card + copyright -->
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <!-- DẢI NỀN TRẮNG phía sau ô đăng nhập + dòng copyright -->
+            <Rectangle Fill="White"
+                   Height="249"
+                   VerticalAlignment="Bottom"
+                   RadiusX="8" RadiusY="8"
+                   Opacity="0.95" Margin="15,0,4.6,0.4"/>
+
+            <!-- Card + Copyright -->
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,7,4.6,9.8">
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <Border Width="920" Height="216"
+                        CornerRadius="10"
+                        Background="#6E080C"
+                        Padding="0"
+                        Panel.ZIndex="-2">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20"
+                                          ShadowDepth="4"
+                                          Opacity="0.6"/>
+                        </Border.Effect>
+
+                        <Grid Margin="14">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="47*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="482*"/>
+                                <ColumnDefinition Width="381*"/>
+                                <ColumnDefinition Width="29*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Bên trái -->
+                            <Border Grid.Column="0"
+                                CornerRadius="8"
+                                Padding="20"
+                                Margin="10,0,381.2,-41"
+                                Grid.ColumnSpan="2"
+                                Grid.RowSpan="2"
+                                Grid.Row="1">
+
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,18"/>
+
+                                    <UniformGrid Columns="2" Rows="4" Margin="0,0,0,5">
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,4">
+                                            <Rectangle Width="6" Height="6" Fill="#FFD7FF57"
+                                                   RadiusX="3" RadiusY="3"
+                                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock Text="Nguyễn Trọng Khôi" Foreground="#FFEBEBEB" FontSize="14"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,4">
+                                            <Rectangle Width="6" Height="6" Fill="#FFD7FF57"
+                                                   RadiusX="3" RadiusY="3"
+                                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock Text="Trà Văn Minh Khoa" Foreground="#FFEBEBEB" FontSize="14"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,4">
+                                            <Rectangle Width="6" Height="6" Fill="#FFFFA857"
+                                                   RadiusX="3" RadiusY="3"
+                                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock Text="Nguyễn Nam Hùng" Foreground="#FFEBEBEB" FontSize="14"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,4">
+                                            <Rectangle Width="6" Height="6" Fill="#FF57FFC0"
+                                                   RadiusX="3" RadiusY="3"
+                                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock Text="Lê Thế Khánh Hưng" Foreground="#FFEBEBEB" FontSize="14"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,4">
+                                            <Rectangle Width="6" Height="6" Fill="#FFFF5757"
+                                                   RadiusX="3" RadiusY="3"
+                                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock Text="Đoàn Thị Ngọc Hân" Foreground="#FFEBEBEB" FontSize="14"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,4">
+                                            <Rectangle Width="6" Height="6" Fill="#FF57A4FF"
+                                                   RadiusX="3" RadiusY="3"
+                                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock Text="Đỗ Văn Hiếu" Foreground="#FFEBEBEB" FontSize="14"/>
+                                        </StackPanel>
+
+                                    </UniformGrid>
+
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Bên phải: FORM LOGIN -->
+                            <Border CornerRadius="8"
+        Padding="18"
+        Margin="457,14.8,0.2,9.6"
+        Grid.ColumnSpan="2"
+        Grid.RowSpan="2"
+        Grid.Row="1">
+
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#70FFFFFF" Offset="0"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="15"
+                          ShadowDepth="2"
+                          Opacity="0.35"/>
+                                </Border.Effect>
+
+                                <!-- FORM LOGIN CĂN GIỮA -->
+                                <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="320">
+
+                                    <!-- USERNAME -->
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <TextBlock Text="Tên Đăng nhập:"
+                       Width="110"
+                       VerticalAlignment="Center"
+                       Foreground="#FFF5F5F5"
+                       FontSize="14"
+                       FontWeight="SemiBold"/>
+
+                                        <TextBox x:Name="txtUser"
+                     Style="{StaticResource RoundedTextBox}"
+                     Height="28"
+                     FontSize="14"
+                     Padding="6,2"
+                     Background="#FFFBEFF2"
+                     Width="180"/>
+                                    </StackPanel>
+
+                                    <!-- PASSWORD -->
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <TextBlock Text="Mật khẩu:"
+                       Width="110"
+                       VerticalAlignment="Center"
+                       Foreground="#FFF5F5F5"
+                       FontSize="14"
+                       FontWeight="SemiBold"/>
+
+                                        <PasswordBox x:Name="txtPass"
+                         Style="{StaticResource RoundedPasswordBox}"
+                         Height="28"
+                         FontSize="14"
+                         Padding="6,2"
+                         Background="#FFFBEFF2"
+                         Width="180"/>
+                                    </StackPanel>
+
+                                    <!-- LOGIN BUTTON -->
+                                    <Button x:Name="btnLogin"
+                Style="{StaticResource RoundedButton}"
+                Content="Đăng nhập"
+                Width="120" Height="32"
+                Margin="110,5,0,0"
+                HorizontalAlignment="Left"
+                FontWeight="Bold"
+                Foreground="White"
+                Click="btnLogin_Click_1">
+
+                                        <Button.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#FFCC001A" Offset="0"/>
+                                                <GradientStop Color="#AA5A0000" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Button.Background>
+
+                                        <Button.Effect>
+                                            <DropShadowEffect BlurRadius="8"
+                                  ShadowDepth="2"
+                                  Opacity="0.35"/>
+                                        </Button.Effect>
+                                    </Button>
+
+                                </StackPanel>
+
+                            </Border>
+
+
+                        </Grid>
+                    </Border>
+
+                    <TextBlock Text="Copyright © 2025 6 Anh Em Siêu Nhân."
+                           Margin="10,10,0,0"
+                           FontSize="15"
+                           Foreground="#333"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Left"/>
+
+                </StackPanel>
+
+                <Border Width="930" Height="268"
+                    CornerRadius="12"
+                    Background="#88FFFFFF"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,-14,10,-0.4"
+                    Panel.ZIndex="-1">
+
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15"
+                                      ShadowDepth="0"
+                                      Opacity="0.25"/>
+                    </Border.Effect>
+
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Label Content="Đăng nhập với vai trò:" FontWeight="SemiBold"
+           Foreground="White" FontSize="12"
+           HorizontalAlignment="Left" Margin="579,175,0,0"/>
+
+        <RadioButton x:Name="rtn_student" Content="Sinh Viên" FontWeight="SemiBold"
+                 Foreground="White" FontSize="12"
+                 HorizontalAlignment="Left" Margin="731,181,0,0"/>
+
+        <RadioButton x:Name="rtn_teacher" Content="Giảng viên" FontWeight="SemiBold"
+                 Foreground="White" FontSize="12"
+                 HorizontalAlignment="Left" Margin="831,181,0,0"/>
+
+        <RadioButton x:Name="rtn_admin" Content="Admin" FontWeight="SemiBold"
+                 Foreground="White" FontSize="12"
+                 HorizontalAlignment="Left" Margin="931,181,0,0"/>
+
+    </Grid>
+
+</Window>

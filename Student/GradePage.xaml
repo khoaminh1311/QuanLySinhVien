@@ -1,0 +1,36 @@
+﻿<Page x:Class="InterfaceSinhVien.GradePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Xem Điểm" Background="White">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,25">
+            <TextBlock Text="Bảng điểm cá nhân" FontSize="24" FontWeight="Bold" Foreground="#1E293B"/>
+            <TextBlock Text="Theo dõi kết quả học tập học kỳ hiện tại" FontSize="14" Foreground="#64748B" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgDiem" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tên môn học" Binding="{Binding TenMon}" Width="3*" FontWeight="SemiBold"/>
+                <DataGridTextColumn Header="TC" Binding="{Binding TinChi}" Width="0.5*"/>
+                <DataGridTextColumn Header="Chuyên cần" Binding="{Binding ChuyenCan}" Width="*"/>
+                <DataGridTextColumn Header="Giữa kỳ" Binding="{Binding GiuaKy}" Width="*"/>
+                <DataGridTextColumn Header="Cuối kỳ" Binding="{Binding CuoiKy}" Width="*"/>
+
+                <DataGridTextColumn Header="Tổng kết" Binding="{Binding TongKet}" Width="*" FontWeight="Bold">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#0078D7"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

@@ -1,0 +1,54 @@
+﻿<Page x:Class="InterfaceSinhVien.NewsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Tin tức &amp; Thông báo" Background="White">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBlock Text="📢" FontSize="24" Foreground="#D32F2F" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <TextBlock Text="Thông báo" FontSize="24" FontWeight="Bold" Foreground="#D32F2F" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <ListView x:Name="lvThongBao" Grid.Row="1" SelectionChanged="LvThongBao_SelectionChanged" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#EEE" BorderThickness="0,0,0,1" Padding="10" Margin="0,0,0,10" Width="750">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="{Binding Title}" 
+                                               FontSize="14" FontWeight="Bold" Foreground="#D32F2F" 
+                                               TextWrapping="Wrap" MaxWidth="550"/>
+
+                                    <Border Background="Yellow" CornerRadius="3" Margin="10,0,0,0" 
+                                            Visibility="{Binding IsNewVisibility}" Height="20" Padding="5,0">
+                                        <TextBlock Text="💥 Mới" FontSize="10" FontWeight="Bold" Foreground="Red" VerticalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding Content}" FontSize="13" Foreground="#333" 
+                                           TextWrapping="Wrap" LineHeight="20"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="10,0,0,0">
+                                <TextBlock Text="🕒" Foreground="#FF8C00" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding TimeAgo}" FontSize="12" Foreground="Gray" Margin="0,0,15,0"/>
+                                <TextBlock Text="🗑️" Cursor="Hand" ToolTip="Xóa thông báo"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

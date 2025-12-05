@@ -1,0 +1,51 @@
+﻿<Page x:Class="InterfaceSinhVien.ReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Gửi Báo Cáo" Background="#F8FAFC">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="🚩 Gửi Báo Cáo &amp; Góp Ý" FontSize="24" FontWeight="Bold" Foreground="#1E293B"/>
+            <TextBlock Text="Gửi phản hồi về lỗi hệ thống, thắc mắc hoặc đóng góp ý kiến" FontSize="14" Foreground="#64748B" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Background="White" CornerRadius="10" Padding="30" VerticalAlignment="Top">
+            <Border.Effect>
+                <DropShadowEffect Color="#E2E8F0" BlurRadius="15" Opacity="0.5"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Text="Nội dung báo cáo:" FontWeight="SemiBold" Foreground="#334155" Margin="0,0,0,10"/>
+
+                <TextBox x:Name="txtContent" Height="200" TextWrapping="Wrap" AcceptsReturn="True"
+                         FontSize="14" Padding="10" VerticalContentAlignment="Top"
+                         BorderBrush="#CBD5E1" BorderThickness="1">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <TextBlock Text="* Nội dung sẽ được gửi trực tiếp đến Admin để xử lý." 
+                           FontSize="12" Foreground="#94A3B8" FontStyle="Italic" Margin="0,5,0,20"/>
+
+                <Button Content="Gửi báo cáo" Click="BtnGuiBaoCao_Click"
+                        Width="150" Height="45" HorizontalAlignment="Right"
+                        Background="#0078D7" Foreground="White" FontWeight="Bold" FontSize="15"
+                        BorderThickness="0" Cursor="Hand">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

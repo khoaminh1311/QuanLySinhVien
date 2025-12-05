@@ -1,0 +1,115 @@
+﻿<Page x:Class="InterfaceSinhVien.HomeworkPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Bài tập" Background="#F8FAFC">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="📝 Quản lý bài tập" FontSize="24" FontWeight="Bold" Foreground="#1E293B"/>
+            <TextBlock Text="Chọn lớp học bên trái để xem danh sách bài tập" FontSize="14" Foreground="#64748B" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="White" CornerRadius="10" Margin="0,0,20,0">
+                <Border.Effect>
+                    <DropShadowEffect Color="#E2E8F0" BlurRadius="10" Opacity="0.5"/>
+                </Border.Effect>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Lớp học của bạn" FontWeight="Bold" Margin="20,20,0,10" Foreground="#334155"/>
+
+                    <ListBox x:Name="lbClasses" Grid.Row="1" BorderThickness="0" Background="Transparent" 
+                             SelectionChanged="LbClasses_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Margin" Value="10,5"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Border x:Name="border" Background="White" CornerRadius="8" Padding="15" BorderBrush="#E2E8F0" BorderThickness="1" Cursor="Hand">
+                                                <ContentPresenter/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#EFF6FF"/>
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="#0078D7"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#F8FAFC"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding MaLop}" FontWeight="Bold" FontSize="15" Foreground="#0078D7"/>
+                                    <TextBlock Text="{Binding TenMon}" FontSize="13" Foreground="#64748B" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <TextBlock x:Name="txtEmpty" Text="👈 Vui lòng chọn một lớp để xem bài tập" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Foreground="#94A3B8" FontSize="16" FontStyle="Italic"/>
+
+                <Grid x:Name="gridHomework" Visibility="Collapsed">
+                    <DataGrid x:Name="dgHomework" Style="{StaticResource ModernDataGrid}" AutoGenerateColumns="False"
+ MouseDoubleClick="DgHomework_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Nội dung bài tập" Width="2*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Content}" TextWrapping="Wrap" Padding="5" VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="Ngày giao" 
+                    Binding="{Binding StartDate, StringFormat='dd/MM/yyyy HH:mm'}" 
+                    Width="130"/>
+
+                            <DataGridTextColumn Header="Hạn nộp" 
+                    Binding="{Binding EndDate, StringFormat='dd/MM/yyyy HH:mm'}" 
+                    Width="130" FontWeight="SemiBold"/>
+
+                            <DataGridTemplateColumn Header="Trạng thái" Width="140">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{Binding StatusBgColor}" CornerRadius="15" Padding="10,4" HorizontalAlignment="Left">
+                                            <TextBlock Text="{Binding StatusText}" Foreground="{Binding StatusForeColor}" FontWeight="Bold" FontSize="12"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

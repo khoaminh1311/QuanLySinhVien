@@ -1,0 +1,89 @@
+﻿<Page x:Class="InterfaceSinhVien.HomeworkDetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Chi tiết bài tập" Background="#F8FAFC">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Click="BtnBack_Click" HorizontalAlignment="Left" Margin="0,0,0,20"
+                Background="Transparent" BorderThickness="0" Cursor="Hand">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="⬅" Foreground="#64748B" FontSize="16" Margin="0,0,8,0"/>
+                <TextBlock Text="Quay lại danh sách" Foreground="#64748B" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <DockPanel Grid.Row="1" LastChildFill="False" Margin="0,0,0,20">
+            <StackPanel DockPanel.Dock="Left">
+                <TextBlock Text="NỘI DUNG BÀI TẬP" FontSize="24" FontWeight="Bold" Foreground="#1E293B"/>
+                <TextBlock Text="Xem chi tiết yêu cầu và nộp bài" FontSize="14" Foreground="#64748B" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <Border x:Name="borderStatus" DockPanel.Dock="Right" CornerRadius="20" Padding="20,8" VerticalAlignment="Top">
+                <TextBlock x:Name="txtStatus" Text="Trạng thái" FontWeight="Bold" Foreground="White" FontSize="14"/>
+            </Border>
+        </DockPanel>
+
+        <Border Grid.Row="2" Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,25">
+            <Border.Effect>
+                <DropShadowEffect Color="#E2E8F0" BlurRadius="10" Opacity="0.5"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="📅 Ngày giao" Foreground="#64748B" FontSize="13" Margin="0,0,0,5"/>
+                    <TextBlock x:Name="txtStartDate" Text="..." FontWeight="SemiBold" Foreground="#334155" FontSize="16"/>
+                </StackPanel>
+
+                <TextBlock Grid.Column="1" Text="➝" FontSize="24" Foreground="#CBD5E1" VerticalAlignment="Center" Margin="30,0"/>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                    <TextBlock Text="⏰ Hạn nộp" Foreground="#64748B" FontSize="13" Margin="0,0,0,5" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="txtEndDate" Text="..." FontWeight="SemiBold" Foreground="#D32F2F" FontSize="16"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Yêu cầu chi tiết:" FontWeight="Bold" Foreground="#334155" Margin="0,0,0,10" FontSize="16"/>
+
+            <Border Grid.Row="1" Background="White" CornerRadius="10" Padding="25">
+                <Border.Effect>
+                    <DropShadowEffect Color="#E2E8F0" BlurRadius="10" Opacity="0.5"/>
+                </Border.Effect>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <TextBlock x:Name="txtContent" Text="..." FontSize="16" LineHeight="28" 
+                               TextWrapping="Wrap" Foreground="#333" TextAlignment="Justify"/>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <Button x:Name="btnNopBai" Grid.Row="4" Content="📤 Nộp bài ngay" 
+                HorizontalAlignment="Right" Margin="0,25,0,0"
+                Width="180" Height="50" Background="#0078D7" Foreground="White" FontWeight="Bold" FontSize="16"
+                BorderThickness="0" Cursor="Hand" Click="BtnNopBai_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Page>
