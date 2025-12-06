@@ -19,12 +19,16 @@ namespace QuanLySinhVien.Repositories
                     SELECT cc.*
                     FROM Teacher_CourseClass tcc
                     JOIN courseClass cc ON tcc.courseClass_id = cc.courseClass_id
-                    WHERE tcc.teacher_id = @teacherId;
+                    WHERE tcc.teacher_id = @teacherId
+                    AND cc.semester = @semester
+                    AND cc.year = @year;
                 ";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@teacherId", teacherId);
+                    cmd.Parameters.AddWithValue("@semester", semester);
+                    cmd.Parameters.AddWithValue("@year", year);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -37,8 +41,8 @@ namespace QuanLySinhVien.Repositories
                                 Room = reader.GetString("room"),
                                 LearnSchedule = reader.GetString("learnSchedule"),
                                 Duration = reader.GetString("duration"),
-                                Semester = reader.GetInt32("semester"),
-                                Year = reader.GetInt32("year"),
+                                Semester = reader["semester"].ToString(),
+                                Year = reader["year"].ToString(),
                                 Status = reader.GetString("status"),
                                 Capacity = reader.GetInt32("capacity")
                             });

@@ -8,7 +8,7 @@ namespace InterfaceSinhVien
     public partial class ReportPage : Page
     {
         // Nhớ thêm SslMode=None
-        string strKetNoi = "Server=127.0.0.1;Database=doanqlsv;Port=3307;Uid=hung;Pwd=123456;";
+        string strKetNoi = "Server=127.0.0.1;Database=doanqlsv;Port=3307;Uid=hung;Pwd=123;";
 
         // Dù ẩn danh, ta vẫn giữ constructor nhận ID để code ở MainWindow không bị lỗi
         // Nhưng ta sẽ KHÔNG dùng biến _studentID này khi Insert

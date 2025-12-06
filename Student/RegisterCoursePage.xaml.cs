@@ -19,7 +19,7 @@ namespace InterfaceSinhVien
             public string MauTrangThai => TrangThai == "Đã đầy" ? "Red" : "Green";
         }
 
-        string strKetNoi = "Server=127.0.0.1;Database=doanqlsv;Port=3307;Uid=hung;Pwd=123456;";
+        string strKetNoi = "Server=127.0.0.1;Database=doanqlsv;Port=3307;Uid=hung;Pwd=123;";
         string _studentID;
 
         public RegisterCoursePage(string studentID)

@@ -9,7 +9,7 @@ namespace InterfaceSinhVien
 {
     public partial class HomeworkPage : Page
     {
-        string strKetNoi = "Server=127.0.0.1;Database=doanqlsv;Port=3307;Uid=hung;Pwd=123456;";
+        string strKetNoi = "Server=127.0.0.1;Database=doanqlsv;Port=3307;Uid=hung;Pwd=123;";
         string _studentID;
 
         // Class cho danh sách lớp (Cột trái)

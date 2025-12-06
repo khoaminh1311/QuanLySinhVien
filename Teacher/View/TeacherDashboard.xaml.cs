@@ -16,7 +16,6 @@ using Microsoft.Win32;
 using MySqlX.XDevAPI;
 using QuanLySinhVien.Models;
 using QuanLySinhVien.Repositories;
-//using QuanLySinhVien.Services;
 using QuanLySinhVien.Utils;
 using QuanLySinhVien.View;
 
@@ -32,12 +31,6 @@ namespace QuanLySinhVien.Views.Teacher
         private TeachingScheduleRepository _courseRepo = new TeachingScheduleRepository();
 
         //cloudflared access tcp --hostname mysql.doanqlsv.id.vn --url localhost:3307
-
-        //public TeacherDashboard()
-        //{
-        //    InitializeComponent();
-        //    //Loaded += TeacherDashboard_Loaded;
-        //}
 
         private readonly string _teacherId;
         private readonly string _teacherName;
@@ -72,17 +65,6 @@ namespace QuanLySinhVien.Views.Teacher
         }
         private async void TeacherDashboard_Loaded(object sender, RoutedEventArgs e)
         {
-            // Nếu Dashboard được mở bằng Login → _teacherName != null
-            //if (!string.IsNullOrWhiteSpace(_teacherName))
-            //{
-            //    txtTenGV_Header.Text = "Giảng viên: " + _teacherName;
-            //    txtTenGV_Left.Text = _teacherName;
-            //}
-            //else
-            //{
-            //    // Mở trực tiếp → chạy mock
-            //    LoadDashboardData();
-            //}
             txtTenGV_Header.Text = "Giảng viên: " + currentTeacher.FullName;
             txtTenGV_Left.Text = currentTeacher.FullName;
             //txtTitle.Text = "THÔNG TIN CÁ NHÂN";
@@ -125,38 +107,6 @@ namespace QuanLySinhVien.Views.Teacher
             txtTitle.Text = "THÔNG TIN CÁ NHÂN";
 
         }
-
-        //var repo = new TeacherRepository();
-        //MessageBox.Show(repo.GetTeacherName(10294811));
-        //=============================
-        //HÀM GỌI API BACKEND
-        //=============================
-        private void LoadDashboardData()
-        {
-            //var service = new TeacherService();
-            //var data = service.GetDashboardData(1); // dùng mock hoặc database
-
-            //if (data == null) return;
-
-            //txtTenGV_Header.Text = "Giảng viên: " + data.TeacherInfo.Name;
-            //txtTenGV_Left.Text = data.TeacherInfo.Name;
-            //txtTenGV_Header.Text = "Giảng viên: " + _teacherName;
-            //txtTenGV_Left.Text = _teacherName;
-        }
-
-
-        //=============================
-        //LOAD USERCONTROL → NỘI DUNG PHẢI
-        //=============================
-        //private void LoadContent(UserControl control)
-        //{
-        //    ContentArea.Children.Clear();
-        //    ContentArea.Children.Add(control);
-        //}
-
-        //=============================
-        //CÁC HÀM MỞ MENU — ĐỂ TRỐNG
-        //=============================
 
         private void SetActive(object sender)
         {
@@ -240,15 +190,22 @@ namespace QuanLySinhVien.Views.Teacher
             txtTitle.Text = "LỊCH DẠY TUẦN 15: 17/11/2025 - 23/11/2025";
             ShowOnly(gridLichDay);
 
-            var repo = new TeachingScheduleRepository();
-            //var data = repo.GetTeachingSchedule(UserSession.UserId);
-
-            //dataGridLichDay.ItemsSource = data;
-            dataGridLichDay.Visibility = Visibility.Collapsed;
-
+            // 1) Load ItemsSource trước
             cbx_hockilichday.ItemsSource = _courseRepo.GetSemesters();
             cbx_namlichday.ItemsSource = _courseRepo.GetYears();
-            //LoadTeachingSchedule();
+
+            // 2) Chọn item mặc định
+            cbx_hockilichday.SelectedIndex = 0;
+            cbx_namlichday.SelectedIndex = 0;
+
+            string semester = cbx_hockilichday.SelectedItem.ToString();
+            string year = cbx_namlichday.SelectedItem.ToString();
+
+            var repo = new TeachingScheduleRepository();
+            var data = repo.GetTeachingSchedule(UserSession.UserId, semester, year);
+
+            dataGridLichDay.ItemsSource = data;
+            dataGridLichDay.Visibility = Visibility.Visible;
         }
 
         private void XemDanhSachLopDay_Click(object sender, MouseButtonEventArgs e)
@@ -256,14 +213,14 @@ namespace QuanLySinhVien.Views.Teacher
             ShowOnly(gridDanhSachLopDay);
             //gridDanhSachLopDay.Visibility = Visibility.Collapsed;
             txtTitle.Text = "DANH SÁCH LỚP ĐANG GIẢNG DẠY";
+
             var repo = new CourseClassRepository();
             fullClassList = repo.GetCourseClassesByTeacher(UserSession.UserId);
             dataGridLopDay.ItemsSource = fullClassList;
-            dataGridLopDay.Visibility = Visibility.Collapsed;
+            dataGridLopDay.Visibility = Visibility.Visible;
 
             cbx_hockilopday.ItemsSource = _courseRepo.GetSemesters();
             cbx_namlopday.ItemsSource = _courseRepo.GetYears();
-            //LoadClassList();
         }
 
         private void QuanLyDiem_Click(object sender, MouseButtonEventArgs e)
@@ -300,22 +257,6 @@ namespace QuanLySinhVien.Views.Teacher
             var data = repo.GetExamScheduleForTeacher(UserSession.FullName);
 
             dataGridLichCoiThi.ItemsSource = data;
-        }
-
-
-         //=============================
-         //MODEL JSON
-         //=============================
-        //    public class TeacherDashboardResponse
-        //{
-        //    public TeacherInfo TeacherInfo { get; set; }
-        //    public int TotalClasses { get; set; }
-        //    public int TotalStudents { get; set; }
-        //}
-
-        public class TeacherInfo
-        {
-            public string Name { get; set; }
         }
 
         private void Btn_saveGrades_Click(object sender, RoutedEventArgs e)
@@ -396,29 +337,6 @@ namespace QuanLySinhVien.Views.Teacher
             gridUpdateProfile.Visibility = Visibility.Collapsed;
         }
 
-        //private void CbSemester_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    string semester = cbSemester.SelectedItem?.ToString();
-        //    if (semester == null) return;
-
-        //    var classes = courseRepo.GetClassesBySemester(UserSession.UserId, semester);
-
-        //    cbClass.ItemsSource = classes;
-        //    cbClass.DisplayMemberPath = "CourseClassId";
-        //}
-
-        //private void CbClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    string selectedClass = (cbClass.SelectedItem as CourseClassModel)?.CourseClassId;
-
-        //    if (selectedClass == null) return;
-
-        //    var repo = new GradeRepository();
-        //    var grades = repo.GetStudentGrades(selectedClass, UserSession.UserId);
-
-        //    dataGridDiem.ItemsSource = grades;
-        //}
-
         private void TryShowGradeTable()
         {
             if (cbSemester.SelectedItem == null || cbClass.SelectedItem == null)
@@ -472,9 +390,8 @@ namespace QuanLySinhVien.Views.Teacher
             UserSession.UserId = null;
             UserSession.FullName = null;
 
-            var loginWindow = new Login();
-            loginWindow.Show();
-
+            Login lg = new Login();
+            lg.Show();
             this.Close();
         }
 
@@ -683,11 +600,12 @@ namespace QuanLySinhVien.Views.Teacher
 
         private void LoadTeachingSchedule()
         {
-            if (cbx_hockilopday.SelectedItem == null) return;
-            if (cbx_namlopday.SelectedItem == null) return;
+            if (cbx_hockilichday.SelectedItem == null) return;
+            if (cbx_namlichday.SelectedItem == null) return;
 
-            string semester = cbx_hockilopday.SelectedItem.ToString();
-            string year = cbx_namlopday.SelectedItem.ToString();
+            string semester = cbx_hockilichday.SelectedItem?.ToString();
+            string year = cbx_namlichday.SelectedItem?.ToString();
+
 
             var data = _courseRepo.GetTeachingSchedule(UserSession.UserId, semester, year);
 
@@ -775,53 +693,25 @@ namespace QuanLySinhVien.Views.Teacher
 
         private void btn_timlichday_Click(object sender, RoutedEventArgs e)
         {
-            // Replace with real scheduling/search logic.
-            MessageBox.Show("Tim lịch dạy clicked", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (cbx_hockilichday.SelectedItem == null || cbx_namlichday.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn đủ học kỳ và năm.");
+                return;
+            }
+
+            string semester = cbx_hockilichday.SelectedItem.ToString();
+            string year = cbx_namlichday.SelectedItem.ToString();
+
+            var repo = new TeachingScheduleRepository();
+            var data = repo.GetTeachingSchedule(UserSession.UserId, semester, year);
+
+            dataGridLichDay.ItemsSource = data;
+            dataGridLichDay.Visibility = Visibility.Visible;
         }
 
         private void btn_trangchu_Click(object sender, RoutedEventArgs e)
         {
             ShowOnly(gridNoiQuy);
         }
-
-        //private void CloseAllExpanders()
-        //{
-        //    expThongTinGV.IsExpanded = false;
-        //    expGiangDay.IsExpanded = false;
-        //    expCoVanCoiThi.IsExpanded = false;
-        //    expBaiTap.IsExpanded = false;
-        //}
-
-        //private void Expander_Expanded(object sender, RoutedEventArgs e)
-        //{
-        //    // tránh sự kiện lan truyền làm trigger nhiều lần
-        //    e.Handled = true;
-
-        //    CloseAllExpanders();
-
-        //    // mở lại đúng expander được click
-        //    var exp = sender as Expander;
-        //    exp.IsExpanded = true;
-        //}
-
-        //private void expThongTinGV_Expanded(object sender, RoutedEventArgs e)
-        //{
-        //    Expander_Expanded(sender, e);
-        //}
-
-        //private void expGiangDay_Expanded(object sender, RoutedEventArgs e)
-        //{
-        //    Expander_Expanded(sender, e);
-        //}
-
-        //private void expCoVanCoiThi_Expanded(object sender, RoutedEventArgs e)
-        //{
-        //    Expander_Expanded(sender, e);
-        //}
-
-        //private void expBaiTap_Expanded(object sender, RoutedEventArgs e)
-        //{
-        //    Expander_Expanded(sender, e);
-        //}
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Management_system;
 using Management_system.Pages;
 using MySql.Data.MySqlClient;
+using QuanLySinhVien.View;
 using System;
 using System.Windows;
 
@@ -31,6 +32,8 @@ namespace AdminPortal
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
+            Login lg = new Login();
+            lg.Show();
             this.Close();
         }
 

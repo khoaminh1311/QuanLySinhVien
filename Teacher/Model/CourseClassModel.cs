@@ -7,8 +7,8 @@ namespace QuanLySinhVien.Models
         public string Room { get; set; }
         public string LearnSchedule { get; set; }
         public string Duration { get; set; }
-        public int Semester { get; set; }
-        public int Year { get; set; }
+        public string Semester { get; set; }
+        public string Year { get; set; }
         public string Status { get; set; }
         public int Capacity { get; set; }
     }

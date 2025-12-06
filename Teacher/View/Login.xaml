@@ -241,15 +241,15 @@
 
         <RadioButton x:Name="rtn_student" Content="Sinh Viên" FontWeight="SemiBold"
                  Foreground="White" FontSize="12"
-                 HorizontalAlignment="Left" Margin="731,181,0,0"/>
+                 HorizontalAlignment="Left" Margin="731,181,0,353"/>
 
         <RadioButton x:Name="rtn_teacher" Content="Giảng viên" FontWeight="SemiBold"
                  Foreground="White" FontSize="12"
-                 HorizontalAlignment="Left" Margin="831,181,0,0"/>
+                 HorizontalAlignment="Left" Margin="831,181,0,353"/>
 
         <RadioButton x:Name="rtn_admin" Content="Admin" FontWeight="SemiBold"
                  Foreground="White" FontSize="12"
-                 HorizontalAlignment="Left" Margin="931,181,0,0"/>
+                 HorizontalAlignment="Left" Margin="931,181,0,353"/>
 
     </Grid>
 

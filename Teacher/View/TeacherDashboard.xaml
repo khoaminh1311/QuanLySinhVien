@@ -168,11 +168,24 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
               HorizontalScrollBarVisibility="Disabled"
               Margin="0,0,0,0">
-                    <StackPanel>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- expThongTinGV -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- expGiangDay -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- expCoVanCoiThi -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- expBaiTap -->
+                        </Grid.RowDefinitions>
+
                         <!-- ====== 1) THÔNG TIN GIẢNG VIÊN ====== -->
                         <Expander x:Name="expThongTinGV" Header="Thông tin giảng viên"
                   Margin="0,10,0,0"
-                  Background="#FFEDEDED" FontWeight="Bold">
+                  Background="#FFEDEDED" FontWeight="Bold"
+                  Grid.Row="0">
                             <StackPanel Margin="15,5,0,5">
                                 <TextBlock Text="Xem profile"
                            Style="{StaticResource LeftMenuItemStyle}"
@@ -183,7 +196,8 @@
                         <!-- ====== 2) GIẢNG DẠY ====== -->
                         <Expander x:Name="expGiangDay" Header="Giảng dạy"
                   Margin="0,5,0,0"
-                  Background="#FFEDEDED" FontWeight="Bold">
+                  Background="#FFEDEDED" FontWeight="Bold"
+                  Grid.Row="1">
                             <StackPanel Margin="15,5,0,5">
                                 <TextBlock Text="Xem lịch dạy"
                            Style="{StaticResource LeftMenuItemStyle}"
@@ -202,7 +216,8 @@
                         <!-- ====== 3) CỐ VẤN & COI THI ====== -->
                         <Expander x:Name="expCoVanCoiThi" Header="Cố vấn và Coi thi"
                   Margin="0,5,0,0"
-                  Background="#FFEDEDED" FontWeight="Bold">
+                  Background="#FFEDEDED" FontWeight="Bold"
+                  Grid.Row="2">
                             <StackPanel Margin="15,5,0,5">
                                 <TextBlock Text="Xem lớp cố vấn"
                            Style="{StaticResource LeftMenuItemStyle}"
@@ -217,9 +232,9 @@
                         <!-- ====== 4) BÀI TẬP ====== -->
                         <Expander x:Name="expBaiTap" Header="Bài tập"
                   Margin="0,5,0,0"
-                  Background="#FFEDEDED" FontWeight="Bold">
+                  Background="#FFEDEDED" FontWeight="Bold"
+                  Grid.Row="3">
                             <StackPanel Margin="15,5,0,5">
-
                                 <TextBlock x:Name="GiaoBaiTap" Text="Giao bài tập"
                            Style="{StaticResource LeftMenuItemStyle}"
                            MouseLeftButtonUp="GiaoBaiTap_MouseLeftButtonUp"/>
@@ -231,13 +246,12 @@
                                 <TextBlock x:Name="XemNopBai" Text="Danh sách sinh viên nộp bài"
                            Style="{StaticResource LeftMenuItemStyle}"
                            MouseLeftButtonUp="XemNopBai_MouseLeftButtonUp"/>
-
                             </StackPanel>
                         </Expander>
 
-                    </StackPanel>
-
+                    </Grid>
                 </ScrollViewer>
+
 
             </StackPanel>
             <!-- ===== NỘI DUNG PHẢI ===== -->

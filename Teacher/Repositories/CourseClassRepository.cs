@@ -38,8 +38,8 @@ namespace QuanLySinhVien.Repositories
                                 Room = reader["room"].ToString(),
                                 LearnSchedule = reader["learnSchedule"].ToString(),
                                 Duration = reader["duration"].ToString(),
-                                Semester = Convert.ToInt32(reader["semester"]),
-                                Year = Convert.ToInt32(reader["year"]),
+                                Semester = reader["semester"].ToString(),
+                                Year = reader["year"].ToString(),
                                 Status = reader["status"].ToString(),
                                 Capacity = Convert.ToInt32(reader["capacity"])
                             });

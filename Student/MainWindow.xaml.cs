@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using QuanLySinhVien.View;
 
 namespace InterfaceSinhVien
 {
@@ -178,9 +179,9 @@ namespace InterfaceSinhVien
         }
         private void Button_Thoat(object sender, RoutedEventArgs e)
         {
-            DangNhap dn = new DangNhap();
-            dn.Show();
-            this.Close();
+           Login lg = new Login();
+           lg.Show();
+           this.Close();
         }
     }
 }
