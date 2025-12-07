@@ -33,10 +33,16 @@ namespace Management_system
             using (MySqlConnection conn = DBHelper.GetConnection())
             {
                 conn.Open();
-                string query = @"SELECT cc.teacher_id, cc.khoa, cc.advisorClass_name, t.full_name
-                                        FROM Advisor_Class cc
-                                        LEFT JOIN teacher t
-                                        ON cc.teacher_id = t.teacher_id";
+                string query = @"
+            SELECT  cc.teacher_id,
+                    cc.khoa,
+                    cc.advisorClass_name,
+                    cc.student_id,
+                    t.full_name AS teacher_name,
+                    s.full_name AS student_name
+            FROM advisor_class cc
+            LEFT JOIN teacher t ON cc.teacher_id = t.teacher_id
+            LEFT JOIN student s ON cc.student_id = s.student_id";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -51,6 +57,7 @@ namespace Management_system
                 dtgAdvisorClass.ItemsSource = dt.DefaultView;
             }
         }
+
 
         private DataRowView GetSelected()
         {
@@ -76,13 +83,21 @@ namespace Management_system
             using (MySqlConnection conn = DBHelper.GetConnection())
             {
                 conn.Open();
-                string sql = @"SELECT cc.teacher_id, cc.khoa, cc.advisorClass_name, t.full_name
-                                        FROM Advisor_Class cc
-                                        LEFT JOIN teacher t
-                                        ON cc.teacher_id = t.teacher_id
-                            WHERE cc.teacher_id LIKE @kw 
-                               OR cc.advisorClass_name LIKE @kw 
-                               OR t.full_name LIKE @kw";
+                string sql = @"
+            SELECT  cc.teacher_id,
+                    cc.khoa,
+                    cc.advisorClass_name,
+                    cc.student_id,
+                    t.full_name AS teacher_name,
+                    s.full_name AS student_name
+            FROM advisor_class cc
+            LEFT JOIN teacher t ON cc.teacher_id = t.teacher_id
+            LEFT JOIN student s ON cc.student_id = s.student_id
+            WHERE cc.teacher_id       LIKE @kw
+               OR cc.advisorClass_name LIKE @kw
+               OR t.full_name          LIKE @kw
+               OR cc.student_id        LIKE @kw
+               OR s.full_name          LIKE @kw";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
@@ -99,6 +114,7 @@ namespace Management_system
             }
         }
 
+
         private void BtnDetail_Click(object sender, RoutedEventArgs e)
         {
             var row = GetSelected();
@@ -106,14 +122,17 @@ namespace Management_system
 
             MessageBox.Show(
                 $"Mã giảng viên: {row["teacher_id"]}\n" +
-                $"Họ tên giảng viên: {row["full_name"]}\n" +
+                $"Họ tên giảng viên: {row["teacher_name"]}\n" +
                 $"Khóa: {row["khoa"]}\n" +
-                $"Lớp cố vấn: {row["advisorClass_name"]}\n",
-                "Chi tiết lớp học phần",
+                $"Lớp cố vấn: {row["advisorClass_name"]}\n" +
+                $"Mã sinh viên: {row["student_id"]}\n" +
+                $"Họ tên sinh viên: {row["student_name"]}\n",
+                "Chi tiết lớp cố vấn",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information
             );
         }
+
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {

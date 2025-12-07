@@ -2,10 +2,11 @@
 using System;
 using System.Data;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+using QuanLySinhVien.Utils;
 namespace Management_system.Pages
 {
     public partial class AccountPage : Page
@@ -40,13 +41,38 @@ namespace Management_system.Pages
 
         private void LoadAdminInfo()
         {
+            // 1. Lấy từ App trước (nếu có)
+            string adminId = App.AdminID;
+
+            // 2. Nếu rỗng, lấy từ class Admin trong Management_system (nếu có dùng)
+            if (string.IsNullOrWhiteSpace(adminId))
+            {
+                adminId = Admin.AdminId;
+            }
+
+            // 3. Nếu vẫn rỗng, lấy từ UserSession (được set ở màn Login chính)
+            if (string.IsNullOrWhiteSpace(adminId))
+            {
+                adminId = UserSession.UserId;
+            }
+
+            // 4. Nếu vẫn không có thì chịu, báo lỗi
+            if (string.IsNullOrWhiteSpace(adminId))
+            {
+                MessageBox.Show(
+                    "Không xác định được mã admin đang đăng nhập (App.AdminID, Admin.AdminId, UserSession.UserId đều rỗng).");
+                return;
+            }
+
             using (MySqlConnection conn = DBHelper.GetConnection())
             {
                 conn.Open();
 
-                string sql = "SELECT * FROM admin LIMIT 1";
+                string sql = "SELECT * FROM admin WHERE admin_id = @id LIMIT 1";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                cmd.Parameters.Add("@id", MySqlDbType.VarChar).Value = adminId;
+
+                var reader = cmd.ExecuteReader();
 
                 if (reader.Read())
                 {
@@ -62,11 +88,18 @@ namespace Management_system.Pages
                         Address = reader["address"].ToString(),
                     };
 
-                    string avatar = reader["avatar"]?.ToString();
-                    LoadAvatar(avatar);
+                    LoadAvatar(reader["avatar"]?.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy admin_id = " + adminId);
                 }
             }
         }
+
+
+
+
 
         private void LoadAvatar(string avatar)
         {
