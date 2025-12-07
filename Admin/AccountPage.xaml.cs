@@ -78,11 +78,22 @@ namespace Management_system.Pages
                     return;
                 }
 
-                // Avatar cục bộ (images/...)
-                if (File.Exists("images/" + avatar))
+                // Nếu trong DB chưa có đuôi file, thêm mặc định .png
+                if (!avatar.EndsWith(".png", StringComparison.OrdinalIgnoreCase) &&
+                    !avatar.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) &&
+                    !avatar.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase))
+                {
+                    avatar += ".png";
+                }
+
+                // Đường dẫn ảnh local: Admin/images/<avatar>
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string localPath = Path.Combine(baseDir, "Admin", "images", avatar);
+
+                if (File.Exists(localPath))
                 {
                     imgAvatar.Fill = new ImageBrush(
-                        new BitmapImage(new Uri("images/" + avatar, UriKind.Relative))
+                        new BitmapImage(new Uri(localPath, UriKind.Absolute))
                     );
                     return;
                 }
@@ -113,10 +124,23 @@ namespace Management_system.Pages
 
         private void SetDefaultAvatar()
         {
-            imgAvatar.Fill = new ImageBrush(
-                new BitmapImage(new Uri("D:\\QLSV_Final\\QuanLySinhVien\\Admin\\images\\admin_avatar.png", UriKind.Relative))
-            );
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string avatarPath = Path.Combine(baseDir, "Admin", "images", "admin_avatar.png");
+
+            if (File.Exists(avatarPath))
+            {
+                imgAvatar.Fill = new ImageBrush(
+                    new BitmapImage(new Uri(avatarPath, UriKind.Absolute))
+                );
+            }
+            else
+            {
+                imgAvatar.Fill = new SolidColorBrush(Colors.LightGray);
+            }
         }
+
+
+
 
         private void EditInfo_Click(object sender, System.Windows.RoutedEventArgs e)
         {

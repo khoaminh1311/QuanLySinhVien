@@ -22,12 +22,13 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="CẬP NHẬT LỚP CỐ VẤN"
-                   FontSize="28" FontWeight="Bold"
-                   Foreground="#B00020" Grid.Row="0"
-                   HorizontalAlignment="Center"/>
+                           FontSize="28" FontWeight="Bold"
+                           Foreground="#B00020" Grid.Row="0"
+                           HorizontalAlignment="Center"/>
 
-                <StackPanel Grid.Row="1" Margin="0,10,0,0" VerticalAlignment="Top">
-                    <StackPanel.Resources>
+                <!-- ĐÃ ĐỔI StackPanel -> Grid 2 cột -->
+                <Grid Grid.Row="1" Margin="0,10,0,0" VerticalAlignment="Top">
+                    <Grid.Resources>
 
                         <!-- Label -->
                         <Style TargetType="TextBlock" x:Key="LabelStyle">
@@ -77,26 +78,71 @@
 
                         </Style>
 
-                    </StackPanel.Resources>
+                    </Grid.Resources>
 
+                    <!-- Định nghĩa 2 cột: Label + Input -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Mã giảng viên (không sửa):" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtTeacherId" Style="{StaticResource InputStyle}" IsEnabled="False"/>
+                    <!-- Các hàng: 4 trường + 1 hàng nút -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                    <TextBlock Text="Họ tên giảng viên:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtFullName" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 0: Mã giảng viên -->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="Mã giảng viên (không sửa):"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"
+                             x:Name="txtTeacherId"
+                             Style="{StaticResource InputStyle}"
+                             IsEnabled="False"
+                             Margin="5"/>
 
-                    <TextBlock Text="Khóa:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtKhoa" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 1: Họ tên giảng viên -->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="Họ tên giảng viên:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"
+                             x:Name="txtFullName"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <TextBlock Text="Lớp cố vấn:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtAdvisorClass" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 2: Khóa -->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="Khóa:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"
+                             x:Name="txtKhoa"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <Button Content="Cập nhật"
+                    <!-- Hàng 3: Lớp cố vấn -->
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="Lớp cố vấn:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"
+                             x:Name="txtAdvisorClass"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
+
+                    <!-- Hàng 4: Nút Cập nhật -->
+                    <Button Grid.Row="4" Grid.ColumnSpan="2"
+                            Content="Cập nhật"
                             Style="{StaticResource SaveButton}"
-                            Click="BtnSave_Click"/>
-
-                </StackPanel>
+                            HorizontalAlignment="Right"
+                            Click="BtnSave_Click" Margin="0,20.2,0.2,0" Width="731"/>
+                </Grid>
             </Grid>
         </Border>
     </Grid>

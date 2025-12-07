@@ -78,15 +78,33 @@
                         </Style>
 
                     </StackPanel.Resources>
-                    <TextBlock Text="MGV:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtTeacherId" Style="{StaticResource InputStyle}"/>
 
-                    <TextBlock Text="Khóa:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtKhoa" Style="{StaticResource InputStyle}"/>
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <!-- Cột label -->
+                            <ColumnDefinition Width="*"/>
+                            <!-- Cột textbox -->
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Lớp cố vấn:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtAdvisorClass" Style="{StaticResource InputStyle}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
+                        <!-- MGV -->
+                        <TextBlock Text="MGV:" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtTeacherId" Style="{StaticResource InputStyle}" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+                        <!-- Khóa -->
+                        <TextBlock Text="Khóa:" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtKhoa" Style="{StaticResource InputStyle}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                        <!-- Lớp cố vấn -->
+                        <TextBlock Text="Lớp cố vấn:" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtAdvisorClass" Style="{StaticResource InputStyle}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                    </Grid>
                     <Button Content="Lưu" Style="{StaticResource SaveButton}" Click="BtnSave_Click"/>
 
                 </StackPanel>

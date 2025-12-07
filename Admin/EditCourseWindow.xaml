@@ -22,12 +22,13 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="CẬP NHẬT MÔN HỌC"
-                   FontSize="28" FontWeight="Bold"
-                   Foreground="#B00020" Grid.Row="0"
-                   HorizontalAlignment="Center"/>
+                           FontSize="28" FontWeight="Bold"
+                           Foreground="#B00020" Grid.Row="0"
+                           HorizontalAlignment="Center"/>
 
-                <StackPanel Grid.Row="1" Margin="0,10,0,0" VerticalAlignment="Top">
-                    <StackPanel.Resources>
+                <!-- ĐỔI StackPanel -> Grid 2 cột -->
+                <Grid Grid.Row="1" Margin="0,10,0,0" VerticalAlignment="Top">
+                    <Grid.Resources>
 
                         <!-- Label -->
                         <Style TargetType="TextBlock" x:Key="LabelStyle">
@@ -77,32 +78,91 @@
 
                         </Style>
 
-                    </StackPanel.Resources>
+                    </Grid.Resources>
 
+                    <!-- 2 cột: Label + Input -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Mã môn (không sửa):" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtCourseId" Style="{StaticResource InputStyle}" IsEnabled="False"/>
+                    <!-- 5 trường + 1 hàng nút -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- 0: Mã môn -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 1: Tên môn -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 2: Tín chỉ -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 3: Mô tả -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 4: Môn tiên quyết -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 5: Nút -->
+                    </Grid.RowDefinitions>
 
-                    <TextBlock Text="Tên môn:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtName" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 0: Mã môn (không sửa) -->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="Mã môn (không sửa):"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"
+                             x:Name="txtCourseId"
+                             Style="{StaticResource InputStyle}"
+                             IsEnabled="False"
+                             Margin="5"/>
 
-                    <TextBlock Text="Tín chỉ:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtCredit" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 1: Tên môn -->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="Tên môn:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"
+                             x:Name="txtName"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <TextBlock Text="Mô tả:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtDescription" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
+                    <!-- Hàng 2: Tín chỉ -->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="Tín chỉ:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"
+                             x:Name="txtCredit"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <TextBlock Text="Môn tiên quyết:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtPrereq" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 3: Mô tả (multiline) -->
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="Mô tả:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"
+                             x:Name="txtDescription"
+                             Height="60"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             Margin="5"/>
 
-                    <Button Content="Cập nhật"
+                    <!-- Hàng 4: Môn tiên quyết -->
+                    <TextBlock Grid.Row="4" Grid.Column="0"
+                               Text="Môn tiên quyết:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="4" Grid.Column="1"
+                             x:Name="txtPrereq"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
+
+                    <!-- Hàng 5: Nút Cập nhật (span 2 cột) -->
+                    <Button Grid.Row="5" Grid.ColumnSpan="2"
+                            Content="Cập nhật"
                             Style="{StaticResource SaveButton}"
-                            Click="BtnSave_Click"/>
-
-                </StackPanel>
+                            HorizontalAlignment="Right"
+                            Click="BtnSave_Click" Margin="0,19.8,0.2,0.4" Width="731"/>
+                </Grid>
             </Grid>
         </Border>
-        
-
     </Grid>
 </Window>

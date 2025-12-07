@@ -52,31 +52,49 @@ namespace Management_system
             }
         }
 
-        private void LoadAvatar(string url)
+        private void LoadAvatar(string fileName)
         {
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string defaultPath = Path.Combine(baseDir, "Admin", "images", "admin_avatar.png");
+
             try
             {
-                if (!string.IsNullOrEmpty(url))
+                // Nếu trống → dùng default
+                if (string.IsNullOrWhiteSpace(fileName))
                 {
-                    BitmapImage bmp = new BitmapImage();
-                    bmp.BeginInit();
-                    bmp.UriSource = new Uri(url, UriKind.RelativeOrAbsolute);
-                    bmp.EndInit();
+                    SetImage(defaultPath);
+                    return;
+                }
 
-                    imgAvatar.Fill = new ImageBrush(bmp);
+                // Nếu DB chỉ lưu tên file → ghép đường dẫn đúng
+                string avatarPath = Path.Combine(baseDir, "Admin", "images", fileName);
+
+                if (File.Exists(avatarPath))
+                {
+                    SetImage(avatarPath);
                 }
                 else
                 {
-                    imgAvatar.Fill = new ImageBrush(
-                        new BitmapImage(new Uri("/Admin/images/admin_avatar.png", UriKind.Relative)));
+                    SetImage(defaultPath);
                 }
             }
             catch
             {
-                imgAvatar.Fill = new ImageBrush(
-                    new BitmapImage(new Uri("/Admin/images/admin_avatar.png", UriKind.Relative)));
+                SetImage(defaultPath);
             }
         }
+
+        private void SetImage(string path)
+        {
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.UriSource = new Uri(path, UriKind.Absolute);
+            bmp.CacheOption = BitmapCacheOption.OnLoad;
+            bmp.EndInit();
+
+            imgAvatar.Fill = new ImageBrush(bmp);
+        }
+
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {

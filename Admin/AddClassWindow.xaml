@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Management_system"
         mc:Ignorable="d"
-        Title="AddClassWindow" Height="800" Width="800"
+        Title="AddClassWindow" Height="600" Width="800"
         WindowStartupLocation="CenterScreen"
         Background="#F5F5F5">
     <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="463*"/>
+            <ColumnDefinition Width="331*"/>
+        </Grid.ColumnDefinitions>
         <Border Background="White"
                 CornerRadius="15"
                 Padding="30"
                 BorderBrush="#E0E0E0"
-                BorderThickness="1">
+                BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4">
             <Border.Effect>
                 <DropShadowEffect Color="#000000" BlurRadius="18" ShadowDepth="3" Opacity="0.22"/>
             </Border.Effect>
@@ -80,38 +84,67 @@
                         </Style>
 
                     </StackPanel.Resources>
-                    <TextBlock Text="Mã lớp học phần:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtClassId" Style="{StaticResource InputStyle}"/>
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Mã môn:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtCourseId" Style="{StaticResource InputStyle}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Text="Phòng:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtRoom" Style="{StaticResource InputStyle}"/>
+                        <!-- Mã lớp học phần -->
+                        <TextBlock Text="Mã lớp học phần:" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtClassId" Style="{StaticResource InputStyle}" Grid.Row="0" Grid.Column="1" Margin="5"/>
 
-                    <TextBlock Text="Lịch học:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtSchedule" Style="{StaticResource InputStyle}"/>
+                        <!-- Mã môn -->
+                        <TextBlock Text="Mã môn:" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtCourseId" Style="{StaticResource InputStyle}" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
-                    <TextBlock Text="Thời lượng:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtDuration" Style="{StaticResource InputStyle}"/>
+                        <!-- Phòng -->
+                        <TextBlock Text="Phòng:" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtRoom" Style="{StaticResource InputStyle}" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-                    <TextBlock Text="Kỳ học:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtSemester" Style="{StaticResource InputStyle}"/>
+                        <!-- Lịch học -->
+                        <TextBlock Text="Lịch học:" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtSchedule" Style="{StaticResource InputStyle}" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
-                    <TextBlock Text="Năm:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtYear" Style="{StaticResource InputStyle}"/>
+                        <!-- Thời lượng -->
+                        <TextBlock Text="Thời lượng:" Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtDuration" Style="{StaticResource InputStyle}" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
-                    <TextBlock Text="Trạng thái:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtStatus" Style="{StaticResource InputStyle}"/>
+                        <!-- Kỳ học -->
+                        <TextBlock Text="Kỳ học:" Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtSemester" Style="{StaticResource InputStyle}" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
-                    <TextBlock Text="Số lượng:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtCapacity" Style="{StaticResource InputStyle}"/>
+                        <!-- Năm -->
+                        <TextBlock Text="Năm:" Style="{StaticResource LabelStyle}" Grid.Row="6" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtYear" Style="{StaticResource InputStyle}" Grid.Row="6" Grid.Column="1" Margin="5"/>
+
+                        <!-- Trạng thái -->
+                        <TextBlock Text="Trạng thái:" Style="{StaticResource LabelStyle}" Grid.Row="7" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtStatus" Style="{StaticResource InputStyle}" Grid.Row="7" Grid.Column="1" Margin="5"/>
+
+                        <!-- Số lượng -->
+                        <TextBlock Text="Số lượng:" Style="{StaticResource LabelStyle}" Grid.Row="8" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="txtCapacity" Style="{StaticResource InputStyle}" Grid.Row="8" Grid.Column="1" Margin="5"/>
+                    </Grid>
+
 
                     <Button Content="Lưu" Style="{StaticResource SaveButton}" Click="BtnSave_Click"/>
 
                 </StackPanel>
             </Grid>
-            
+
         </Border>
     </Grid>
 </Window>

@@ -24,45 +24,74 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Title -->
+                <!-- TITLE -->
                 <TextBlock Text="TẠO THÔNG BÁO"
-                   FontSize="28" FontWeight="Bold"
-                   Foreground="#B00020"
-                   HorizontalAlignment="Center"/>
+               FontSize="28"
+               FontWeight="Bold"
+               Foreground="#B00020"
+               HorizontalAlignment="Center"/>
 
-                <!-- Loại người nhận -->
-                <StackPanel Grid.Row="1" Margin="0,20,0,0">
-                    <TextBlock Text="Đối tượng nhận:"/>
-                    <ComboBox x:Name="cbTarget" Height="30" Width="200">
+                <!-- ========== FORM (2 CỘT) ========== -->
+
+                <!-- ĐỐI TƯỢNG NHẬN -->
+                <Grid Grid.Row="1" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Đối tượng nhận:" Margin="5"/>
+                    <ComboBox x:Name="cbTarget"
+                  Height="30"
+                  Margin="5"
+                  Grid.Column="1">
                         <ComboBoxItem Content="Tất cả"/>
                         <ComboBoxItem Content="Sinh viên"/>
                         <ComboBoxItem Content="Giảng viên"/>
                     </ComboBox>
-                </StackPanel>
+                </Grid>
 
-                <!-- Tiêu đề -->
-                <StackPanel Grid.Row="2" Margin="0,10,0,0">
-                    <TextBlock Text="Tiêu đề:"/>
-                    <TextBox x:Name="txtTitle" Height="30"/>
-                </StackPanel>
+                <!-- TIÊU ĐỀ -->
+                <Grid Grid.Row="2" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Nội dung -->
-                <StackPanel Grid.Row="3" Margin="0,10,0,0">
-                    <TextBlock Text="Nội dung:"/>
+                    <TextBlock Text="Tiêu đề:" Margin="5"/>
+                    <TextBox x:Name="txtTitle"
+                 Height="30"
+                 Margin="5"
+                 Grid.Column="1"/>
+                </Grid>
+
+                <!-- NỘI DUNG -->
+                <Grid Grid.Row="3" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Nội dung:" Margin="5"/>
                     <TextBox x:Name="txtContent"
-                     Height="150"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"/>
-                </StackPanel>
+                 Height="150"
+                 Margin="5"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 Grid.Column="1"/>
+                </Grid>
 
-                <!-- Nút gửi -->
+                <!-- BUTTON -->
                 <Button Grid.Row="4"
-                Content="Gửi thông báo"
-                Background="#CC0000" Foreground="White"
-                Height="40"
-                Click="BtnSend_Click"/>
+            Content="Gửi thông báo"
+            Background="#CC0000"
+            Foreground="White"
+            Height="40"
+            Margin="5"
+            Click="BtnSend_Click"/>
             </Grid>
+
         </Border>
-        
+
     </Grid>
 </Window>
