@@ -45,20 +45,20 @@ namespace Management_system
 
                     if (rd.Read())
                     {
-                        Admin.adminId = rd["admin_id"].ToString();
-                        Admin.adminName = rd["admin_name"].ToString();
-                        Admin.gender = rd["gender"].ToString();
-                        Admin.email = rd["email"].ToString();
-                        Admin.phone = rd["phone"].ToString();
-                        Admin.address = rd["address"].ToString();
+                        Admin.AdminId = rd["admin_id"].ToString();
+                        Admin.AdminName = rd["admin_name"].ToString();
+                        Admin.Gender = rd["gender"].ToString();
+                        Admin.Email = rd["email"].ToString();
+                        Admin.Phone = rd["phone"].ToString();
+                        Admin.Address = rd["address"].ToString();
 
                         //Lưu vào biến cục bộ App
-                        App.AdminID = Admin.adminId;
-                        App.AdminName = Admin.adminName;
+                        App.AdminID = Admin.AdminId;
+                        App.AdminName = Admin.AdminName;
                         // Đăng nhập thành công
                         MainWindow home = new MainWindow();
                         home.Show();
-                        MessageBox.Show("Đăng nhập: " + Admin.adminName);
+                        MessageBox.Show("Đăng nhập: " + Admin.AdminName);
                         this.Close();
                     }
                     else

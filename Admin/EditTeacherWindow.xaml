@@ -137,8 +137,8 @@
                               x:Name="cbGender"
                               Height="35"
                               Margin="5">
-                        <ComboBoxItem Content="Male"/>
-                        <ComboBoxItem Content="Female"/>
+                        <ComboBoxItem Content="Nam"/>
+                        <ComboBoxItem Content="Nữ"/>
                     </ComboBox>
 
                     <!-- Hàng 3: Email -->

@@ -6,7 +6,7 @@
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:local="clr-namespace:Management_system"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000 "
       Title="ManageAdvisorClassPage">
 
     <Grid>
@@ -62,34 +62,43 @@
                 </StackPanel>
 
                 <!-- DATA GRID -->
-                <DataGrid x:Name="dtgAdvisorClass" Grid.Row="2"
-                  AutoGenerateColumns="False" RowHeight="40"
-                  CanUserAddRows="False"
-                  HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto"
-                  ColumnWidth="Auto"
-                  HorizontalAlignment="Left"
-                  HorizontalContentAlignment="Left"
-                  MaxWidth="900"       
-                  IsReadOnly="True" Margin="0,10,0,0">
+               <DataGrid x:Name="dtgAdvisorClass" Grid.Row="2"
+          AutoGenerateColumns="False"
+          RowHeight="40"
+          CanUserAddRows="False"
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto"
+          ColumnWidth="Auto"
+          HorizontalAlignment="Stretch"
+          HorizontalContentAlignment="Left"
+          IsReadOnly="True"
+          Margin="0,10,0,10">
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="STT" Binding="{Binding STT}" Width="50"/>
-                        <DataGridTextColumn Header="MGV" Binding="{Binding teacher_id}" Width="120"/>
-                        <DataGridTextColumn Header="Họ tên giảng viên" Binding="{Binding full_name}" Width="150"/>
-                        <DataGridTextColumn Header="Khóa" Binding="{Binding khoa}" Width="100"/>
-                        <DataGridTextColumn Header="Lớp cố vấn" Binding="{Binding advisorClass_name}" Width="150"/>
-                        <DataGridTemplateColumn Header="Chi tiết" Width="95">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="STT" Binding="{Binding STT}" Width="50"/>
+
+                    <!-- Thông tin giảng viên -->
+                    <DataGridTextColumn Header="MGV" Binding="{Binding teacher_id}" Width="120"/>
+                    <DataGridTextColumn Header="Họ tên giảng viên" Binding="{Binding teacher_name}" Width="150"/>
+
+                    <DataGridTextColumn Header="Khóa" Binding="{Binding khoa}" Width="100"/>
+                    <DataGridTextColumn Header="Lớp cố vấn" Binding="{Binding advisorClass_name}" Width="150"/>
+
+                    <!-- Thông tin sinh viên -->
+                    <DataGridTextColumn Header="MSSV" Binding="{Binding student_id}" Width="120"/>
+                    <DataGridTextColumn Header="Họ tên sinh viên" Binding="{Binding student_name}" Width="150"/>
+
+                    <DataGridTemplateColumn Header="Chi tiết" Width="95">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Background="#0094FF"
-                                            Foreground="White"
-                                            Padding="5,2"
-                                            Margin="5"
-                                            Cursor="Hand"
-                                            Click="BtnDetail_Click"
-                                            BorderThickness="0"
-                                            HorizontalAlignment="Center">
+                        Foreground="White"
+                        Padding="5,2"
+                        Margin="5"
+                        Cursor="Hand"
+                        Click="BtnDetail_Click"
+                        BorderThickness="0"
+                        HorizontalAlignment="Center">
                                         <StackPanel Orientation="Horizontal">
                                             <fa:FontAwesome Icon="InfoCircle" Width="16" Height="16" Margin="0,0,5,0"/>
                                             <TextBlock Text="Chi tiết"/>
@@ -104,27 +113,27 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
-                                                HorizontalAlignment="Center">
+                            HorizontalAlignment="Center">
 
                                         <!-- Sửa -->
                                         <Button Background="#0275d8"
-                                                Foreground="White"
-                                                Padding="5,2"
-                                                Margin="5,0"
-                                                Click="BtnEdit_Click"
-                                                Cursor="Hand"
-                                                BorderThickness="0">
+                            Foreground="White"
+                            Padding="5,2"
+                            Margin="5,0"
+                            Click="BtnEdit_Click"
+                            Cursor="Hand"
+                            BorderThickness="0">
                                             <fa:FontAwesome Icon="Edit" Width="16" Height="16"/>
                                         </Button>
 
                                         <!-- Xóa -->
                                         <Button Background="#d9534f"
-                                                Foreground="White"
-                                                Padding="5,2"
-                                                Margin="5,0"
-                                                Click="BtnDelete_Click"
-                                                Cursor="Hand"
-                                                BorderThickness="0">
+                            Foreground="White"
+                            Padding="5,2"
+                            Margin="5,0"
+                            Click="BtnDelete_Click"
+                            Cursor="Hand"
+                            BorderThickness="0">
                                             <fa:FontAwesome Icon="Trash" Width="16" Height="16"/>
                                         </Button>
 
@@ -132,8 +141,8 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-
                     </DataGrid.Columns>
+
 
                 </DataGrid>
             </Grid>
