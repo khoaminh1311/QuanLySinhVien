@@ -124,7 +124,12 @@
 
                         <!-- Kỳ học -->
                         <TextBlock Text="Kỳ học:" Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="0" Margin="5"/>
-                        <TextBox x:Name="txtSemester" Style="{StaticResource InputStyle}" Grid.Row="5" Grid.Column="1" Margin="5"/>
+                        <ComboBox x:Name="txtSemester"  Grid.Row="5" Grid.Column="1" Margin="5">
+                            <ComboBoxItem Content="HK1"/>
+                            <ComboBoxItem Content="HK2"/>
+                            <ComboBoxItem Content="HK hè"/>
+                        </ComboBox>
+                        
 
                         <!-- Năm -->
                         <TextBlock Text="Năm:" Style="{StaticResource LabelStyle}" Grid.Row="6" Grid.Column="0" Margin="5"/>

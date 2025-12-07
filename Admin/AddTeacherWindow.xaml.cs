@@ -35,9 +35,17 @@ namespace Management_system
             string address = txtAddress.Text.Trim();
             string faculty = txtFaculty.Text.Trim();
 
+            // Kiểm tra nhập đầy đủ
             if (id == "" || name == "" || gender == "" || email == "")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            // ✓ Kiểm tra teacher_id phải đúng 4 ký tự
+            if (id.Length != 4)
+            {
+                MessageBox.Show("Mã giảng viên phải gồm đúng 4 ký tự!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -45,7 +53,7 @@ namespace Management_system
             {
                 conn.Open();
                 string sql = @"INSERT INTO teacher(teacher_id, full_name, gender, email, phone, address, faculty)
-                               VALUES(@id,@name,@gender,@email,@phone,@address,@faculty)";
+                       VALUES(@id,@name,@gender,@email,@phone,@address,@faculty)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@id", id);
@@ -62,6 +70,7 @@ namespace Management_system
             MessageBox.Show("Thêm giảng viên thành công!");
             this.Close();
         }
+
 
     }
 }
