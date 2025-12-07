@@ -417,7 +417,7 @@ VerticalAlignment="Center" Margin="0,0,10,0"/>
                                 <ComboBox x:Name="cbx_namlichday"
                           Width="120"
                           SelectionChanged="cbx_namlichday_SelectionChanged_1"/>
-                                <Button x:Name="btn_timlichday" Content="Tìm" Width="70" Margin="10,0,0,0" Click="btn_timlichday_Click"/>
+                              <!--  <Button x:Name="btn_timlichday" Content="Tìm" Width="70" Margin="10,0,0,0" Click="btn_timlichday_Click"/> -->
                             </StackPanel>
 
                             <!-- DataGrid lịch dạy -->
@@ -455,7 +455,7 @@ VerticalAlignment="Center" Margin="0,0,10,0"/>
                                 <ComboBox x:Name="cbx_namlopday"
                           Width="120"
                           SelectionChanged="cbx_namlopday_SelectionChanged"/>
-                                <Button x:Name="btn_timlopday" Content="Tìm" Width="70" Margin="10,0,0,0" Click="btn_timlopday_Click"/>
+                              <!--  <Button x:Name="btn_timlopday" Content="Tìm" Width="70" Margin="10,0,0,0" Click="btn_timlopday_Click"/> -->
                             </StackPanel>
 
                             <!-- DataGrid danh sách lớp -->

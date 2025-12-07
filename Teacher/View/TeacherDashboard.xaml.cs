@@ -229,14 +229,13 @@ namespace QuanLySinhVien.Views.Teacher
         {
             txtTitle.Text = "QUẢN LÝ ĐIỂM";
             ShowOnly(gridQuanLyDiem);
-            gridQuanLyDiem.Visibility = Visibility.Visible;
 
-            // Lấy lớp đang chọn
-            string selectedClassId = "CS101-A";
-            var repo = new GradeRepository();
-            var list = repo.GetStudentGrades(selectedClassId, UserSession.UserId);
+            // Ẩn bảng điểm khi mới mở
+            dataGridDiem.ItemsSource = null;
+            dataGridDiem.Visibility = Visibility.Collapsed;
 
-            dataGridDiem.ItemsSource = list;
+            // Reset combobox lớp để tránh hiển thị sai dữ liệu
+            cbClass.ItemsSource = null;
         }
 
         private void XemDanhSachLopCoVan_Click(object sender, MouseButtonEventArgs e)

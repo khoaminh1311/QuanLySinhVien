@@ -120,7 +120,7 @@
 
                 <Button x:Name="btnGuiYeuCau" Grid.Row="2" Content="GỬI YÊU CẦU DUYỆT" 
                 Height="45" Background="#28a745" Foreground="White" FontSize="16" FontWeight="Bold"
-                BorderThickness="0" Cursor="Hand" Click="BtnGuiYeuCau_Click">
+                BorderThickness="0" Cursor="Hand"   Click="BtnGuiYeuCau_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="8"/>

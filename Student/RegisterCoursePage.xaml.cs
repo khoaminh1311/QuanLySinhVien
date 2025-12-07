@@ -162,11 +162,20 @@ namespace InterfaceSinhVien
 
                             if (Convert.ToInt32(cmdCheckEL.ExecuteScalar()) == 0)
                             {
-                                string insertThiSql = "INSERT INTO ExamList (exam_id, student_id, status, supervisor_name) VALUES (@eid, @sid, 'Pending', @sup)";
+                                // 1. TỰ TẠO MÃ ID (Dạng String)
+                                string newExlId = "EXL" + DateTime.Now.ToString("ddHHmmss");
+
+                                // 2. SỬA CÂU SQL: Thêm cột exl_id vào danh sách Insert
+                                string insertThiSql = "INSERT INTO ExamList (exl_id, exam_id, student_id, status, supervisor_name) VALUES (@exlid, @eid, @sid, 'Chưa nộp', @sup)";
+
                                 MySqlCommand insertThiCmd = new MySqlCommand(insertThiSql, conn);
+
+                                // 3. TRUYỀN THAM SỐ
+                                insertThiCmd.Parameters.AddWithValue("@exlid", newExlId);
                                 insertThiCmd.Parameters.AddWithValue("@eid", examID);
                                 insertThiCmd.Parameters.AddWithValue("@sid", _studentID);
                                 insertThiCmd.Parameters.AddWithValue("@sup", teacherName);
+
                                 insertThiCmd.ExecuteNonQuery();
                                 countExamAdded++;
                             }
