@@ -133,8 +133,8 @@
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" Style="{StaticResource LabelStyle}"/>
                     <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtEmail" Style="{StaticResource InputStyle}"/>
 
-                    <!-- Khoa -->
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Khoa:" Style="{StaticResource LabelStyle}"/>
+                    <!-- Khóa -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Khóa:" Style="{StaticResource LabelStyle}"/>
                     <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtKhoa" Style="{StaticResource InputStyle}"/>
 
                     <!-- Ngành -->

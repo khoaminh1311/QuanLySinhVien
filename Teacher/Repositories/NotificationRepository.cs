@@ -20,7 +20,7 @@ namespace QuanLySinhVien.Repositories
                 conn.Open();
 
                 string sql = @"
-                SELECT noti_id, title, content, date, target
+                SELECT title, content, date, target
                 FROM notification
                 WHERE target = @role OR target = 'Tất cả'
                 ORDER BY date DESC";
@@ -35,7 +35,6 @@ namespace QuanLySinhVien.Repositories
                         {
                             list.Add(new NotificationModel
                             {
-                                NotiId = reader.GetInt32("noti_id"),
                                 Title = reader.GetString("title"),
                                 Content = reader.GetString("content"),
                                 Date = reader.GetDateTime("date"),

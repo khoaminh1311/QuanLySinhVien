@@ -82,16 +82,6 @@ namespace QuanLySinhVien.Repositories
                     var result = cmd.ExecuteScalar();
                     return result?.ToString() ?? "";
                 }
-                //    if (role == "teacher" && userId == "10358299")
-                //    return "Nguyễn Nam Hùng (Mock)";
-
-                //if (role == "student")
-                //    return "Sinh viên Mock";
-
-                //if (role == "admin")
-                //    return "Admin Mock";
-
-                //return "";
             }
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLySinhVien.Views.Teacher"
         mc:Ignorable="d"
-        Title="Giao diện Giảng viên" Height="700" Width="1200"
+       Title="Giao diện Giảng viên" Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
         Background="#FFE5E5E5">
 
@@ -14,7 +14,7 @@
             <!-- Thanh menu đỏ trên cùng -->
             <RowDefinition Height="70"/>
             <!-- Banner -->
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
             <!-- Nội dung chính -->
             <RowDefinition Height="*"/>
 
@@ -23,13 +23,13 @@
         <!-- ===== ROW 0: HEADER ĐỎ ===== -->
         <Grid Grid.Row="0" Background="#CCBF0000" Margin="0,0,-0.4,0.4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="432.8"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="303.6"/>
             </Grid.ColumnDefinitions>
 
             <!-- Logo + tên hệ thống -->
-            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0" Height="70">
                 <Image Width="50" Height="50" Margin="10" Source="/Teacher/View/image3.jpg" Stretch="Fill"/>
                 <TextBlock Text="6 Anh Em Siêu Nhân" Foreground="White" FontSize="26"
                FontWeight="Bold" VerticalAlignment="Center"
@@ -38,49 +38,26 @@
 
 
             <!-- Menu ngang -->
-            <!-- ====== HEADER MENU ====== -->
-            <StackPanel Grid.Row="0"
-            Grid.Column="1"
-            Orientation="Horizontal"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Margin="50,0,20,0">
-
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0">
                 <!-- Nút Trang Chủ -->
-                <Button Click="btn_trangchu_Click"
-            Padding="12,6"
-            Background="Transparent"
-            BorderThickness="0"
-            Cursor="Hand">
+                <Button Click="btn_trangchu_Click" Padding="12,6" Background="Transparent" BorderThickness="0" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="🏠Trang chủ" FontSize="18" FontWeight="Bold" Foreground="White"/>
                     </StackPanel>
                 </Button>
-
                 <!-- Nút Thông Báo -->
-                <Button Click="btn_noti_Click"
-            Padding="12,6"
-            Background="Transparent"
-            BorderThickness="0"
-            Cursor="Hand">
+                <Button Click="btn_noti_Click" Padding="12,6" Background="Transparent" BorderThickness="0" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="🔔Thông báo" FontSize="18" FontWeight="Bold" Foreground="White"/>
                     </StackPanel>
                 </Button>
-
                 <!-- Nút Đăng Xuất -->
-                <Button Click="btn_logOut_Click"
-            Padding="12,6"
-            Background="Transparent"
-            BorderThickness="0"
-            Cursor="Hand">
+                <Button Click="btn_logOut_Click" Padding="12,6" Background="Transparent" BorderThickness="0" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="🚪Đăng xuất" FontSize="18" FontWeight="Bold" Foreground="White"/>
                     </StackPanel>
                 </Button>
-
             </StackPanel>
-
 
             <!-- Ngôn ngữ / tài khoản -->
             <StackPanel Grid.Column="2" Orientation="Horizontal"
@@ -90,8 +67,9 @@
                            Foreground="White" Margin="0,0,15,0"/>
             </StackPanel>
         </Grid>
-        <!-- ===== ROW 2: NỘI DUNG CHÍNH ===== -->
-        <Grid Grid.Row="1" Margin="140,20,140,20">
+        
+        <!-- ===== NỘI DUNG CHÍNH ===== -->
+        <Grid Grid.Row="1" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <!-- Menu trái -->
                 <ColumnDefinition Width="280"/>
@@ -100,9 +78,8 @@
             </Grid.ColumnDefinitions>
 
             <!-- Card trắng lớn phía sau -->
-            <Border Grid.ColumnSpan="2" Margin="0,0,0,0"
-            Background="White" CornerRadius="4"/>
-
+            <Border Grid.ColumnSpan="2" Margin="0,0,0,-341"
+    Background="White" CornerRadius="4"/>
 
             <!-- ===== MENU TRÁI ===== -->
             <StackPanel Grid.Column="0" Margin="20,45,10,0">
@@ -114,12 +91,22 @@
                        FontWeight="Bold" FontSize="16"/>
                 </Border>
                 <!-- KHU MENU GIẢNG VIÊN CÓ SCROLLVIEWER -->
-                <ScrollViewer Grid.Column="0"
-              VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Disabled">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled"
+              Margin="0,0,0,0">
 
-                    <StackPanel>
-                        
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- expThongTinGV -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- expGiangDay -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- expCoVanCoiThi -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- expBaiTap -->
+                        </Grid.RowDefinitions>
+
                         <!-- ====== 1) THÔNG TIN GIẢNG VIÊN ====== -->
                         <Expander x:Name="expThongTinGV" Header="Thông tin giảng viên"
                   Margin="0,10,0,0"
@@ -188,10 +175,8 @@
                             </StackPanel>
                         </Expander>
 
-                    </StackPanel>
+                    </Grid>
                 </ScrollViewer>
-
-
             </StackPanel>
             <!-- ===== NỘI DUNG PHẢI ===== -->
             <Grid Grid.Column="1" Margin="0,45,20,20">
@@ -200,18 +185,17 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Thanh tiêu đề dùng chung -->
+                <!-- ============ GRID 1: NỘI QUY (MẶC ĐỊNH) ============ -->
                 <DockPanel Grid.Row="0" Background="#FFF5F5F5" Height="40">
                     <TextBlock x:Name="txtTitle"
-                       Text="NỘI QUY SỬ DỤNG HỆ THỐNG CHO GIẢNG VIÊN"
-                       Margin="10,0,0,0"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold"/>
+                      Text="NỘI QUY SỬ DỤNG HỆ THỐNG CHO GIẢNG VIÊN"
+                      Margin="10,0,0,0"
+                      VerticalAlignment="Center"
+                      FontWeight="Bold"/>
 
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right"
-                        VerticalAlignment="Center" Margin="0,0,10,0"/>
-                </DockPanel>    
-                <!-- ============ GRID 1: NỘI QUY (MẶC ĐỊNH) ============ -->
+VerticalAlignment="Center" Margin="0,0,10,0"/>
+                </DockPanel>
                 <Grid x:Name="gridNoiQuy" Grid.Row="1" Visibility="Visible">
                     <Border BorderBrush="#FFE0E0E0"
                     BorderThickness="1" Margin="0,5,0,0">
@@ -329,7 +313,7 @@
                                         Foreground="White"
                                         FontWeight="Bold"
                                         BorderThickness="0"
-                                        Cursor="Hand">  
+                                        Cursor="Hand">
                                     <Button.Template>
                                         <ControlTemplate TargetType="Button">
                                             <Border Background="{TemplateBinding Background}" CornerRadius="18">
@@ -348,14 +332,14 @@
                                         Padding="15"
                                         BorderBrush="#FFC00000"
                                         BorderThickness="1"
-                                        CornerRadius="8">   
+                                        CornerRadius="8">
 
                                     <StackPanel>
                                         <TextBlock Text="CHỈNH SỬA THÔNG TIN"
                                                    FontSize="16"
                                                    FontWeight="Bold"
                                                    Foreground="#C00000"
-                                                   Margin="0,0,0,10"/>  
+                                                   Margin="0,0,0,10"/>
 
                                         <!-- Họ tên -->
                                         <StackPanel Margin="0,5">
@@ -409,7 +393,7 @@
                                                     Background="Gray"
                                                     Foreground="White"
                                                     FontWeight="Bold"
-                                                    Click="btnCancelProfile_Click"/>    
+                                                    Click="btnCancelProfile_Click"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>
@@ -520,15 +504,15 @@
                             <!-- Bảng điểm -->
                             <DataGrid x:Name="dataGridDiem" AutoGenerateColumns="False" DockPanel.Dock="Top" Visibility="Collapsed">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="MSSV" Binding="{Binding StudentId}" Width="100"/>
-                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding FullName}" Width="200"/>
-                                    <DataGridTextColumn Header="Attendance" Binding="{Binding Attendance}" Width="80"/>
-                                    <DataGridTextColumn Header="MidTerm" Binding="{Binding MidTerm}" Width="80"/>
-                                    <DataGridTextColumn Header="FinalTerm" Binding="{Binding FinalTerm}" Width="80"/>
-                                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="80"/>
+                                    <DataGridTextColumn Header="MSSV" Binding="{Binding StudentId}" Width="*"/>
+                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding FullName}" Width="*"/>
+                                    <DataGridTextColumn Header="Điểm danh" Binding="{Binding Attendance}" Width="*"/>
+                                    <DataGridTextColumn Header="Giữa kì" Binding="{Binding MidTerm}" Width="*"/>
+                                    <DataGridTextColumn Header="Cuối kì" Binding="{Binding FinalTerm}" Width="*"/>
+                                    <DataGridTextColumn Header="Tổng kết" Binding="{Binding Total}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            
+
                         </DockPanel>
                     </Border>
                 </Grid>
@@ -537,23 +521,6 @@
                     <Border BorderBrush="#FFE0E0E0"
             BorderThickness="1" Margin="0,5,0,0">
                         <DockPanel Margin="10">
-
-                            <!-- Thanh filter nhỏ phía trên DataGrid -->
-                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
-                                <TextBlock Text="Học kỳ:" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                                <ComboBox Width="120" SelectedIndex="0">
-                                    <ComboBoxItem Content="HK1 (2025–2026)"/>
-                                    <ComboBoxItem Content="HK2 (2025–2026)"/>
-                                </ComboBox>
-
-                                <TextBlock Text="   Chế độ xem:" VerticalAlignment="Center" Margin="10,0,4,0"/>
-                                <ComboBox Width="120" SelectedIndex="0">
-                                    <ComboBoxItem Content="Tất cả lớp"/>
-                                    <ComboBoxItem Content="Lớp đang dạy"/>
-                                    <ComboBoxItem Content="Đã kết thúc"/>
-                                </ComboBox>
-                            </StackPanel>
-
                             <!-- DataGrid danh sách lớp -->
                             <DataGrid x:Name="dataGridLopCoVan"
                       AutoGenerateColumns="False"
@@ -563,11 +530,11 @@
                       GridLinesVisibility="All"
                       DockPanel.Dock="Bottom">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="MSSV" Binding="{Binding StudentId}" Width="120"/>
-                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding FullName}" Width="200"/>
-                                    <DataGridTextColumn Header="Giới tính" Binding="{Binding Gender}" Width="80"/>
-                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
-                                    <DataGridTextColumn Header="Khóa" Binding="{Binding Khoa}" Width=""/>
+                                    <DataGridTextColumn Header="MSSV" Binding="{Binding StudentId}" Width="*"/>
+                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding FullName}" Width="*"/>
+                                    <DataGridTextColumn Header="Giới tính" Binding="{Binding Gender}" Width="*"/>
+                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                                    <DataGridTextColumn Header="Khóa" Binding="{Binding Khoa}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </DockPanel>
@@ -582,16 +549,6 @@
                             <!-- Filter nhỏ -->
                             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
                                 <TextBlock Text="Đợt thi:" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                                <!--<ComboBox Width="180">
-                                    <ComboBoxItem Content="Thi giữa kỳ HK1 (2025–2026)"/>
-                                    <ComboBoxItem Content="Thi cuối kỳ HK1 (2025–2026)"/>
-                                </ComboBox>
-
-                                <TextBlock Text="   Xem theo:" VerticalAlignment="Center" Margin="10,0,4,0"/>
-                                <ComboBox Width="130">
-                                    <ComboBoxItem Content="Ngày"/>
-                                    <ComboBoxItem Content="Tuần"/>
-                                </ComboBox> -->
                             </StackPanel>
 
                             <!-- Bảng lịch coi thi -->
@@ -600,11 +557,11 @@
                       CanUserAddRows="False" GridLinesVisibility="All">
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Exam ID" Binding="{Binding ExamId}" Width="100"/>
-                                    <DataGridTextColumn Header="Lớp thi" Binding="{Binding CourseClassId}" Width="120"/>
-                                    <DataGridTextColumn Header="Thời gian" Binding="{Binding Schedule}" Width="150"/>
-                                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="100"/>
-                                    <DataGridTextColumn Header="Số SV" Binding="{Binding StudentCount}" Width="60"/>
+                                    <DataGridTextColumn Header="Exam ID" Binding="{Binding ExamId}" Width="*"/>
+                                    <DataGridTextColumn Header="Lớp thi" Binding="{Binding CourseClassId}" Width="*"/>
+                                    <DataGridTextColumn Header="Thời gian" Binding="{Binding Schedule}" Width="*"/>
+                                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="*"/>
+                                    <DataGridTextColumn Header="Số SV" Binding="{Binding StudentCount}" Width="*"/>
                                 </DataGrid.Columns>
 
                             </DataGrid>
@@ -738,11 +695,11 @@
                       AutoGenerateColumns="False"
                       IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" Width="60"/>
-                                    <DataGridTextColumn Header="Class" Binding="{Binding CourseClassId}" Width="120"/>
-                                    <DataGridTextColumn Header="Nội dung" Binding="{Binding Content}" Width="250"/>
-                                    <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding StartDate}" Width="150"/>
-                                    <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding EndDate}" Width="150"/>
+                                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" Width="*"/>
+                                    <DataGridTextColumn Header="Class" Binding="{Binding CourseClassId}" Width="*"/>
+                                    <DataGridTextColumn Header="Nội dung" Binding="{Binding Content}" Width="*"/>
+                                    <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding StartDate}" Width="*"/>
+                                    <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding EndDate}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -750,46 +707,47 @@
                     </Border>
                 </Grid>
                 <!-- ============ GRID 11: QUẢN LÍ SINH VIÊN NỘP BÀI TẬP ============ -->
-    <Grid x:Name="gridXemNopBai" Grid.Row="1" Visibility="Collapsed">
-    <Border BorderBrush="#DDD" BorderThickness="1" Margin="0,5,0,0">
-        <DockPanel Margin="10">
+                <Grid x:Name="gridXemNopBai" Grid.Row="1" Visibility="Collapsed">
+                    <Border BorderBrush="#DDD" BorderThickness="1" Margin="0,5,0,0">
+                        <DockPanel Margin="10">
 
-            <!-- Combobox chọn bài -->
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Chọn bài tập:"
+                            <!-- Combobox chọn bài -->
+                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock Text="Chọn bài tập:"
                            VerticalAlignment="Center"/>
-                <ComboBox x:Name="cbAssignmentList"
+                                <ComboBox x:Name="cbAssignmentList"
                           Width="300" Margin="10,0,0,0"
                           SelectionChanged="cbAssignmentList_SelectionChanged"
                           DisplayMemberPath="Content"
                           SelectedValuePath="Id"/>
-            </StackPanel>
+                            </StackPanel>
 
-            <!-- Grid danh sách đã nộp -->
-            <DataGrid x:Name="dataGridStudentSubmit"
+                            <!-- Grid danh sách đã nộp -->
+                            <DataGrid x:Name="dataGridStudentSubmit"
                       AutoGenerateColumns="False"
                       IsReadOnly="True">
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="MSSV" Width="100"
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="MSSV" Width="*"
                                         Binding="{Binding StudentId}"/>
-                    <DataGridTextColumn Header="Họ tên" Width="150"
+                                    <DataGridTextColumn Header="Họ tên" Width="*"
                                         Binding="{Binding FullName}"/>
-                    <DataGridTextColumn Header="Email" Width="150"
+                                    <DataGridTextColumn Header="Email" Width="*"
                                         Binding="{Binding Email}"/>
-                    <DataGridTextColumn Header="Nội dung nộp" Width="250"
+                                    <DataGridTextColumn Header="Nội dung nộp" Width="*"
                                         Binding="{Binding SubmitContent}"/>
-                    <DataGridTextColumn Header="Ngày nộp" Width="150"
+                                    <DataGridTextColumn Header="Ngày nộp" Width="*"
                                         Binding="{Binding SubmitDate}"/>
-                </DataGrid.Columns>
+                                </DataGrid.Columns>
 
-            </DataGrid>
+                            </DataGrid>
 
-        </DockPanel>
-    </Border>
-</Grid>
+                        </DockPanel>
+                    </Border>
+                </Grid>
 
             </Grid>
         </Grid>
     </Grid>
+
 </Window>

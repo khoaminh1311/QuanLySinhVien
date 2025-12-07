@@ -8,7 +8,6 @@ namespace QuanLySinhVien.Models
 {
     public class NotificationModel
     {
-        public int NotiId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }

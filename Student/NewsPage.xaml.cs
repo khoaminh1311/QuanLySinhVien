@@ -8,7 +8,6 @@ namespace InterfaceSinhVien
 {
     public class NotificationItem
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
@@ -48,11 +47,8 @@ namespace InterfaceSinhVien
                 {
                     conn.Open();
 
-                    // --- CẬP NHẬT CÂU SQL TẠI ĐÂY ---
-                    // Thêm điều kiện: WHERE target = 'Sinh viên'
-                    // Mẹo: Nên thêm cả OR target = 'Tất cả' để sinh viên không bị sót các thông báo chung
-
-                    string sql = "SELECT noti_id, title, content, date FROM Notification " +
+                    // --- SỬA CÂU SQL: Bỏ id ---
+                    string sql = "SELECT title, content, date FROM Notification " +
                                  "WHERE target = 'Sinh viên' OR target = 'Tất cả' " +
                                  "ORDER BY date DESC";
 
@@ -63,7 +59,7 @@ namespace InterfaceSinhVien
                         {
                             list.Add(new NotificationItem()
                             {
-                                Id = Convert.ToInt32(reader["noti_id"]),
+                                // --- CHỈ GÁN 3 CỘT NÀY ---
                                 Title = reader["title"].ToString(),
                                 Content = reader["content"].ToString(),
                                 Date = Convert.ToDateTime(reader["date"])
@@ -74,10 +70,9 @@ namespace InterfaceSinhVien
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi: " + ex.Message);
+                    MessageBox.Show("Lỗi tải thông báo: " + ex.Message);
                 }
             }
-
         }
         private void LvThongBao_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using MySql.Data.MySqlClient;
 using QuanLySinhVien.Models;
 using QuanLySinhVien.Utils;
@@ -100,19 +101,10 @@ namespace QuanLySinhVien.Repositories
         {
             public string StudentId { get; set; }
             public string FullName { get; set; }
-
-            // Các thuộc tính dùng để hiển thị trên DataGrid
-            public string AttendanceText { get; set; }
-            public string MidTermText { get; set; }
-            public string FinalTermText { get; set; }
-            public string TotalText { get; set; }
-
-            // Các thuộc tính dùng để lưu vào DB (được Parse từ Text)
             public float Attendance { get; set; }
             public float MidTerm { get; set; }
             public float FinalTerm { get; set; }
             public float Total { get; set; }
-
             public string CourseClassId { get; set; }
             public string TeacherId { get; set; }
         }

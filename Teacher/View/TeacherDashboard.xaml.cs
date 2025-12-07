@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Policy;
 using System.Text.Json;
@@ -38,6 +39,7 @@ namespace QuanLySinhVien.Views.Teacher
         public TeacherDashboard(string teacherId, string teacherName)
         {
             InitializeComponent();
+            //dataGridDiem.AutoGenerateColumns = false;
             Loaded += TeacherDashboard_Loaded;
 
             // GÁN GIÁ TRỊ SESSION
@@ -104,7 +106,7 @@ namespace QuanLySinhVien.Views.Teacher
             txtProfileFaculty.Text = currentTeacher.Faculty;
             txtTenGV_Header.Text = "Giảng viên: " + currentTeacher.FullName;
             txtTenGV_Left.Text = currentTeacher.FullName;
-            txtTitle.Text = "THÔNG TIN CÁ NHÂN";
+            //txtTitle.Text = "THÔNG TIN CÁ NHÂN";
 
         }
 
@@ -187,7 +189,7 @@ namespace QuanLySinhVien.Views.Teacher
 
         private void XemLichDay_Click(object sender, MouseButtonEventArgs e)
         {
-            txtTitle.Text = "LỊCH DẠY TUẦN 15: 17/11/2025 - 23/11/2025";
+            txtTitle.Text = "LỊCH DẠY TUẦN NÀY";
             ShowOnly(gridLichDay);
 
             // 1) Load ItemsSource trước
@@ -230,10 +232,9 @@ namespace QuanLySinhVien.Views.Teacher
             gridQuanLyDiem.Visibility = Visibility.Visible;
 
             // Lấy lớp đang chọn
-            string selectedClassId = "CS101-A"; // Tạm mock – sau sẽ lấy từ combobox
-
+            string selectedClassId = "CS101-A";
             var repo = new GradeRepository();
-            var list = repo.GetStudentGrades(selectedClassId, UserSession.FullName); // ID giảng viên test
+            var list = repo.GetStudentGrades(selectedClassId, UserSession.UserId);
 
             dataGridDiem.ItemsSource = list;
         }
@@ -345,19 +346,18 @@ namespace QuanLySinhVien.Views.Teacher
                 return;
             }
 
-            // Lấy lớp được chọn
             string selectedClass = (cbClass.SelectedItem as CourseClassModel)?.CourseClassId;
             if (string.IsNullOrEmpty(selectedClass))
                 return;
 
             var repo = new GradeRepository();
             var grades = repo.GetStudentGrades(selectedClass, UserSession.UserId);
-
+            //dataGridDiem.AutoGenerateColumns = false;
             dataGridDiem.ItemsSource = grades;
-
             dataGridDiem.Visibility = Visibility.Visible;
         }
 
+            
         private void cbSemester_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string semester = cbSemester.SelectedItem?.ToString();
@@ -374,16 +374,15 @@ namespace QuanLySinhVien.Views.Teacher
         private void cbClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedClass = (cbClass.SelectedItem as CourseClassModel)?.CourseClassId;
-
             if (selectedClass == null) return;
 
             var repo = new GradeRepository();
             var grades = repo.GetStudentGrades(selectedClass, UserSession.UserId);
-
             dataGridDiem.ItemsSource = grades;
 
             TryShowGradeTable();
         }
+
 
         private void btn_logOut_Click(object sender, RoutedEventArgs e)
         {
@@ -397,6 +396,7 @@ namespace QuanLySinhVien.Views.Teacher
 
         private void btn_noti_Click(object sender, RoutedEventArgs e)
         {
+            txtTitle.Text = "";
             var data = notiService.LoadForTeacher();
             listNotification.ItemsSource = data;
 
@@ -464,6 +464,7 @@ namespace QuanLySinhVien.Views.Teacher
 
         private void GiaoBaiTap_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            txtTitle.Text = "GIAO BÀI TẬP";
             ShowOnly(gridGiaoBaiTap);
 
             // Load danh sách lớp mà GV đang dạy
@@ -534,7 +535,8 @@ namespace QuanLySinhVien.Views.Teacher
 
         private void QuanLyBaiTap_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-           OpenQuanLyAssignment();
+           txtTitle.Text = "QUẢN LÝ BÀI TẬP";
+            OpenQuanLyAssignment();
         }
 
         private void btnEditAssign_Click(object sender, RoutedEventArgs e)
@@ -590,6 +592,7 @@ namespace QuanLySinhVien.Views.Teacher
 
         private void XemNopBai_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            txtTitle.Text = "XEM DANH SÁCH SINH VIÊN NỘP BÀI TẬP";
             ShowOnly(gridXemNopBai);
 
             var repo = new AssignmentRepository();
@@ -712,6 +715,11 @@ namespace QuanLySinhVien.Views.Teacher
         private void btn_trangchu_Click(object sender, RoutedEventArgs e)
         {
             ShowOnly(gridNoiQuy);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
