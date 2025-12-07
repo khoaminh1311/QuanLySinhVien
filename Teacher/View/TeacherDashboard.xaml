@@ -14,7 +14,7 @@
             <!-- Thanh menu đỏ trên cùng -->
             <RowDefinition Height="70"/>
             <!-- Banner -->
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
             <!-- Nội dung chính -->
             <RowDefinition Height="*"/>
 
@@ -23,13 +23,13 @@
         <!-- ===== ROW 0: HEADER ĐỎ ===== -->
         <Grid Grid.Row="0" Background="#CCBF0000" Margin="0,0,-0.4,0.4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="432.8"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="303.6"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <!-- Logo + tên hệ thống -->
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0" Height="70">
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
                 <Image Width="50" Height="50" Margin="10" Source="/Teacher/View/image3.jpg" Stretch="Fill"/>
                 <TextBlock Text="6 Anh Em Siêu Nhân" Foreground="White" FontSize="26"
                FontWeight="Bold" VerticalAlignment="Center"
@@ -38,25 +38,49 @@
 
 
             <!-- Menu ngang -->
-            <StackPanel Grid.Column="1" Orientation="Horizontal"
-                        VerticalAlignment="Center"
-                        Margin="10.2,22,223.6,22" Grid.ColumnSpan="2" Height="26">
-                <Button x:Name="btn_trangchu" Click="btn_trangchu_Click" Content="Trang chủ" Margin="5,0" Padding="12,5"
-                        Background="Transparent" Foreground="White"
-                        BorderThickness="0"/>
-                <Button Content="Mail" Margin="5,0" Padding="12,5"
-                        Background="Transparent" Foreground="White"
-                        BorderThickness="0"/>
-                <Button Content="Bài tập" Margin="5,0" Padding="12,5"
-                        Background="Transparent" Foreground="White"
-                        BorderThickness="0"/>
-                <Button Content="Forum" Margin="5,0" Padding="12,5"
-                        Background="Transparent" Foreground="White"
-                        BorderThickness="0"/>
-                <Button Content="Tài liệu" Margin="5,0" Padding="12,5"
-                        Background="Transparent" Foreground="White"
-                        BorderThickness="0"/>
+            <!-- ====== HEADER MENU ====== -->
+            <StackPanel Grid.Row="0"
+            Grid.Column="1"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Margin="50,0,20,0">
+
+                <!-- Nút Trang Chủ -->
+                <Button Click="btn_trangchu_Click"
+            Padding="12,6"
+            Background="Transparent"
+            BorderThickness="0"
+            Cursor="Hand">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🏠Trang chủ" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Nút Thông Báo -->
+                <Button Click="btn_noti_Click"
+            Padding="12,6"
+            Background="Transparent"
+            BorderThickness="0"
+            Cursor="Hand">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🔔Thông báo" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Nút Đăng Xuất -->
+                <Button Click="btn_logOut_Click"
+            Padding="12,6"
+            Background="Transparent"
+            BorderThickness="0"
+            Cursor="Hand">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🚪Đăng xuất" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+
             </StackPanel>
+
 
             <!-- Ngôn ngữ / tài khoản -->
             <StackPanel Grid.Column="2" Orientation="Horizontal"
@@ -66,84 +90,8 @@
                            Foreground="White" Margin="0,0,15,0"/>
             </StackPanel>
         </Grid>
-
-        <!-- ====== ROW 1: BANNER MY DTU ====== -->
-        <Grid Grid.Row="1">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#FFCC0000" Offset="0" />
-                    <GradientStop Color="#FF9B0000" Offset="1" />
-                </LinearGradientBrush>
-            </Grid.Background>
-
-            <Border Width="893" Height="140" CornerRadius="12"
-            Background="#22FFFFFF"
-            BorderBrush="#55FFFFFF" BorderThickness="2"
-            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="146,5,154.6,5.4">
-
-                <Grid Margin="20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="2.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- BÊN TRÁI: LOGO MY DUYTAN -->
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                    <!-- Ở GIỮA: ĐỒNG HỒ + NGÀY -->
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Border Background="#F0FFFFFF" CornerRadius="5" Margin="4" Padding="8,3">
-                                <TextBlock Text="1" Foreground="#B00000" FontWeight="Bold" FontSize="28"/>
-                            </Border>
-                            <Border Background="#F0FFFFFF" CornerRadius="5" Margin="4" Padding="8,3">
-                                <TextBlock Text="2" Foreground="#B00000" FontWeight="Bold" FontSize="28"/>
-                            </Border>
-                            <TextBlock Text=":" VerticalAlignment="Center" FontSize="28" Foreground="White" Margin="2,0"/>
-                            <Border Background="#F0FFFFFF" CornerRadius="5" Margin="4" Padding="8,3">
-                                <TextBlock Text="4" Foreground="#B00000" FontWeight="Bold" FontSize="28"/>
-                            </Border>
-                            <Border Background="#F0FFFFFF" CornerRadius="5" Margin="4" Padding="8,3">
-                                <TextBlock Text="4" Foreground="#B00000" FontWeight="Bold" FontSize="28"/>
-                            </Border>
-                            <TextBlock Text=":" VerticalAlignment="Center" FontSize="28" Foreground="White" Margin="2,0"/>
-                            <Border Background="#F0FFFFFF" CornerRadius="5" Margin="4" Padding="8,3">
-                                <TextBlock Text="3" Foreground="#B00000" FontWeight="Bold" FontSize="28"/>
-                            </Border>
-                            <Border Background="#F0FFFFFF" CornerRadius="5" Margin="4" Padding="8,3">
-                                <TextBlock Text="1" Foreground="#B00000" FontWeight="Bold" FontSize="28"/>
-                            </Border>
-                        </StackPanel>
-
-                        <TextBlock Text="Chủ nhật, ngày 23 tháng 11 năm 2025"
-                           HorizontalAlignment="Center"
-                           Foreground="White" Margin="0,5,0,0"/>
-                    </StackPanel>
-
-                    <!-- BÊN PHẢI: MENU ICON -->
-                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="6 Anh Em Siêu Nhân" Foreground="White" FontWeight="Bold"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                            <TextBlock Text="HỌC TẬP TRỰC TUYẾN" Foreground="White" FontWeight="Bold"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                            <TextBlock Text="DIỄN ĐÀN HỌC TẬP 6 Anh Em" Foreground="White" FontWeight="Bold"/>
-                        </StackPanel>
-                    </StackPanel>
-
-                </Grid>
-            </Border>
-        </Grid>
-
-
         <!-- ===== ROW 2: NỘI DUNG CHÍNH ===== -->
-        <Grid Grid.Row="1" Margin="147,125.6,195.6,0.4" Grid.RowSpan="2">
+        <Grid Grid.Row="1" Margin="140,20,140,20">
             <Grid.ColumnDefinitions>
                 <!-- Menu trái -->
                 <ColumnDefinition Width="280"/>
@@ -152,8 +100,9 @@
             </Grid.ColumnDefinitions>
 
             <!-- Card trắng lớn phía sau -->
-            <Border Grid.ColumnSpan="2" Margin="0,35,-38.8,-39.8"
+            <Border Grid.ColumnSpan="2" Margin="0,0,0,0"
             Background="White" CornerRadius="4"/>
+
 
             <!-- ===== MENU TRÁI ===== -->
             <StackPanel Grid.Column="0" Margin="20,45,10,0">
@@ -165,22 +114,12 @@
                        FontWeight="Bold" FontSize="16"/>
                 </Border>
                 <!-- KHU MENU GIẢNG VIÊN CÓ SCROLLVIEWER -->
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Disabled"
-              Margin="0,0,0,0">
+                <ScrollViewer Grid.Column="0"
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled">
 
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <!-- expThongTinGV -->
-                            <RowDefinition Height="Auto"/>
-                            <!-- expGiangDay -->
-                            <RowDefinition Height="Auto"/>
-                            <!-- expCoVanCoiThi -->
-                            <RowDefinition Height="Auto"/>
-                            <!-- expBaiTap -->
-                        </Grid.RowDefinitions>
-
+                    <StackPanel>
+                        
                         <!-- ====== 1) THÔNG TIN GIẢNG VIÊN ====== -->
                         <Expander x:Name="expThongTinGV" Header="Thông tin giảng viên"
                   Margin="0,10,0,0"
@@ -249,7 +188,7 @@
                             </StackPanel>
                         </Expander>
 
-                    </Grid>
+                    </StackPanel>
                 </ScrollViewer>
 
 
@@ -270,12 +209,7 @@
                        FontWeight="Bold"/>
 
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right"
-                        VerticalAlignment="Center" Margin="0,0,10,0">
-                        <Button x:Name="btn_logOut" Content="Đăng xuất" Padding="12,3"
-                        Margin="5,0,0,0" Click="btn_logOut_Click"/>
-                        <Button x:Name="btn_noti"  Content="Thông báo" Padding="12,3"
-                        Margin="10,0,0,0" Click="btn_noti_Click"/>
-                    </StackPanel>
+                        VerticalAlignment="Center" Margin="0,0,10,0"/>
                 </DockPanel>    
                 <!-- ============ GRID 1: NỘI QUY (MẶC ĐỊNH) ============ -->
                 <Grid x:Name="gridNoiQuy" Grid.Row="1" Visibility="Visible">
