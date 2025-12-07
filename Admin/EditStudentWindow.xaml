@@ -19,15 +19,16 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-
                 </Grid.RowDefinitions>
+
                 <TextBlock Text="CẬP NHẬT THÔNG TIN SINH VIÊN"
-                   FontSize="28" FontWeight="Bold"
-                   Foreground="#B00020" Grid.Row="0"
-                   HorizontalAlignment="Center"/>
-                <!-- FORM CHỈNH SỬA -->
-                <StackPanel Grid.Row="1" Margin="0,10,0,0" VerticalAlignment="Top">
-                    <StackPanel.Resources>
+                           FontSize="28" FontWeight="Bold"
+                           Foreground="#B00020" Grid.Row="0"
+                           HorizontalAlignment="Center"/>
+
+                <!-- FORM CHỈNH SỬA: Grid 2 cột -->
+                <Grid Grid.Row="1" Margin="0,10,0,0" VerticalAlignment="Top">
+                    <Grid.Resources>
 
                         <!-- Label -->
                         <Style TargetType="TextBlock" x:Key="LabelStyle">
@@ -77,43 +78,129 @@
 
                         </Style>
 
-                    </StackPanel.Resources>
+                    </Grid.Resources>
 
-                    <TextBlock Text="MSSV:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtID" Style="{StaticResource InputStyle}" IsReadOnly="True" Background="#EEEEEE"/>
+                    <!-- 2 cột: Label + Input -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Họ và tên:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtName" Style="{StaticResource InputStyle}"/>
+                    <!-- 8 trường + 1 hàng nút -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- 0: MSSV -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 1: Họ và tên -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 2: Giới tính -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 3: Email -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 4: Số điện thoại -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 5: Địa chỉ -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 6: Khoa -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 7: Chuyên ngành -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 8: Nút -->
+                    </Grid.RowDefinitions>
 
-                    <TextBlock Text="Giới tính:" Style="{StaticResource LabelStyle}"/>
-                    <ComboBox x:Name="cbGender" Height="35" Width="150">
+                    <!-- Hàng 0: MSSV -->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="MSSV:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"
+                             x:Name="txtID"
+                             Style="{StaticResource InputStyle}"
+                             IsReadOnly="True"
+                             Background="#EEEEEE"
+                             Margin="5"/>
+
+                    <!-- Hàng 1: Họ và tên -->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="Họ và tên:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"
+                             x:Name="txtName"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
+
+                    <!-- Hàng 2: Giới tính -->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="Giới tính:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1"
+                              x:Name="cbGender"
+                              Height="35"
+                              Margin="5">
                         <ComboBoxItem Content="Nam"/>
                         <ComboBoxItem Content="Nữ"/>
                     </ComboBox>
 
-                    <TextBlock Text="Email:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtEmail" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 3: Email -->
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="Email:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"
+                             x:Name="txtEmail"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <TextBlock Text="Số điện thoại:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtPhone" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 4: Số điện thoại -->
+                    <TextBlock Grid.Row="4" Grid.Column="0"
+                               Text="Số điện thoại:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="4" Grid.Column="1"
+                             x:Name="txtPhone"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <TextBlock Text="Địa chỉ:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtAddress" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 5: Địa chỉ -->
+                    <TextBlock Grid.Row="5" Grid.Column="0"
+                               Text="Địa chỉ:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="5" Grid.Column="1"
+                             x:Name="txtAddress"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <TextBlock Text="Khoa:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtKhoa" Style="{StaticResource InputStyle}"/>
+                    <!-- Hàng 6: Khoa -->
+                    <TextBlock Grid.Row="6" Grid.Column="0"
+                               Text="Khoa:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="6" Grid.Column="1"
+                             x:Name="txtKhoa"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                    <TextBlock Text="Chuyên ngành:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtMajor" Style="{StaticResource InputStyle}"/>
-                    <Button Content="Cập nhật" Style="{StaticResource SaveButton}"
-                            Click="BtnSave_Click"/>
+                    <!-- Hàng 7: Chuyên ngành -->
+                    <TextBlock Grid.Row="7" Grid.Column="0"
+                               Text="Chuyên ngành:"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="5"/>
+                    <TextBox Grid.Row="7" Grid.Column="1"
+                             x:Name="txtMajor"
+                             Style="{StaticResource InputStyle}"
+                             Margin="5"/>
 
-                </StackPanel>
-
-                <!-- NÚT LƯU -->
-                
+                    <!-- Hàng 8: Nút Cập nhật -->
+                    <Button Grid.Row="8" Grid.ColumnSpan="2"
+                            Content="Cập nhật"
+                            Style="{StaticResource SaveButton}"
+                            HorizontalAlignment="Right"
+                            Click="BtnSave_Click" Margin="0,20.4,0.2,-0.2" Width="731"/>
+                </Grid>
             </Grid>
         </Border>
-        
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Management_system"
         mc:Ignorable="d"
-        Title="AddCourseWindow" Height="600" Width="800">
+        Title="AddCourseWindow" Height="500" Width="800">
 
     <Grid Margin="0">
         <Border Background="White"
@@ -79,22 +79,47 @@
                         </Style>
 
                     </StackPanel.Resources>
+                    <Grid Grid.Row="1" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Mã môn:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtCourseId" Style="{StaticResource InputStyle}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Text="Tên môn:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtName" Style="{StaticResource InputStyle}"/>
+                        <!-- Mã môn -->
+                        <TextBlock Text="Mã môn:" Style="{StaticResource LabelStyle}" Margin="5" Grid.Row="0" Grid.Column="0"/>
+                        <TextBox x:Name="txtCourseId" Style="{StaticResource InputStyle}" Margin="5" Grid.Row="0" Grid.Column="1"/>
 
-                    <TextBlock Text="Tín chỉ:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtCredit" Style="{StaticResource InputStyle}"/>
+                        <!-- Tên môn -->
+                        <TextBlock Text="Tên môn:" Style="{StaticResource LabelStyle}" Margin="5" Grid.Row="1" Grid.Column="0"/>
+                        <TextBox x:Name="txtName" Style="{StaticResource InputStyle}" Margin="5" Grid.Row="1" Grid.Column="1"/>
 
-                    <TextBlock Text="Mô tả:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtDescription" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
+                        <!-- Tín chỉ -->
+                        <TextBlock Text="Tín chỉ:" Style="{StaticResource LabelStyle}" Margin="5" Grid.Row="2" Grid.Column="0"/>
+                        <TextBox x:Name="txtCredit" Style="{StaticResource InputStyle}" Margin="5" Grid.Row="2" Grid.Column="1"/>
 
-                    <TextBlock Text="Môn tiên quyết:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox x:Name="txtPrereq" Style="{StaticResource InputStyle}"/>
+                        <!-- Mô tả -->
+                        <TextBlock Text="Mô tả:" Style="{StaticResource LabelStyle}" Margin="5" Grid.Row="3" Grid.Column="0"/>
+                        <TextBox x:Name="txtDescription"
+             Height="80"
+             TextWrapping="Wrap"
+             AcceptsReturn="True"
+             Margin="5"
+             Grid.Row="3"
+             Grid.Column="1"/>
 
+                        <!-- Môn tiên quyết -->
+                        <TextBlock Text="Môn tiên quyết:" Style="{StaticResource LabelStyle}" Margin="5" Grid.Row="4" Grid.Column="0"/>
+                        <TextBox x:Name="txtPrereq" Style="{StaticResource InputStyle}" Margin="5" Grid.Row="4" Grid.Column="1"/>
+                    </Grid>
                     <Button Content="Lưu"
                             Style="{StaticResource SaveButton}"
                             Click="BtnSave_Click"/>

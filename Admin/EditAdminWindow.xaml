@@ -6,50 +6,105 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
+    <Window.Resources>
+
+        <!-- LABEL margin=5 -->
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- INPUT margin=5 -->
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+    </Window.Resources>
+
+
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="230"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- AVATAR CHỈ XEM -->
+        <!-- AVATAR -->
         <StackPanel Grid.Column="0" HorizontalAlignment="Center">
             <Ellipse Width="160" Height="160" Stroke="#CCC"
                      StrokeThickness="2" x:Name="imgAvatar" Margin="0,10"/>
         </StackPanel>
 
-        <!-- FORM -->
-        <StackPanel Grid.Column="1" Margin="25,0">
-            <Label Content="Mã Admin:"/>
-            <TextBox x:Name="txtId" IsReadOnly="True"/>
 
-            <Label Content="Tên Admin:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtName"/>
+        <!-- FORM 2 CỘT -->
+        <Grid Grid.Column="1" Margin="25,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <Label Content="Giới tính:" Margin="0,10,0,0"/>
-            <ComboBox x:Name="cbGender">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <!-- Label -->
+                <ColumnDefinition Width="*"/>
+                <!-- Input -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Mã Admin -->
+            <Label Grid.Row="0" Grid.Column="0" Content="Mã Admin:"/>
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtId" IsReadOnly="True"/>
+
+            <!-- Tên Admin -->
+            <Label Grid.Row="1" Grid.Column="0" Content="Tên Admin:"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtName"/>
+
+            <!-- Giới tính -->
+            <Label Grid.Row="2" Grid.Column="0" Content="Giới tính:"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbGender">
                 <ComboBoxItem Content="Nam"/>
                 <ComboBoxItem Content="Nữ"/>
             </ComboBox>
 
-            <Label Content="Email:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtEmail"/>
+            <!-- Email -->
+            <Label Grid.Row="3" Grid.Column="0" Content="Email:"/>
+            <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtEmail"/>
 
-            <Label Content="Số điện thoại:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtPhone"/>
+            <!-- Điện thoại -->
+            <Label Grid.Row="4" Grid.Column="0" Content="Số điện thoại:"/>
+            <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtPhone"/>
 
-            <Label Content="Địa chỉ:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtAddress"/>
+            <!-- Địa chỉ -->
+            <Label Grid.Row="5" Grid.Column="0" Content="Địa chỉ:"/>
+            <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtAddress"/>
 
-            <Label Content="Mật khẩu:" Margin="0,10,0,0"/>
-            <PasswordBox x:Name="txtPassword"/>
+            <!-- Mật khẩu -->
+            <Label Grid.Row="6" Grid.Column="0" Content="Mật khẩu:"/>
+            <PasswordBox Grid.Row="6" Grid.Column="1" x:Name="txtPassword"/>
 
-            <Button Content="Lưu thay đổi"
+            <!-- Button -->
+            <Button Grid.Row="7" Grid.Column="1"
+                    Content="Lưu thay đổi"
                     Background="#27ae60"
                     Foreground="White"
                     Height="45"
-                    Margin="0,25,0,0"
+                    Margin="5,25,5,0"
+                    Width="160"
+                    HorizontalAlignment="Left"
                     Click="BtnSave_Click"/>
-        </StackPanel>
+        </Grid>
+
     </Grid>
 </Window>
